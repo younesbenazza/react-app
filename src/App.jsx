@@ -1,5 +1,5 @@
 import Header from "./components/Layout/Header";
-import Menu from "./components/Layout/Menu";
+import Sidebar from "./components/Layout/Sidebar";
 import Footer from "./components/Layout/Footer";
 import Members from "./pages/Members";
 import Archive from "./pages/Archive";
@@ -26,7 +26,7 @@ function App() {
             </div>
           </div>
           <div className="border-x border-s-neutral-300">
-            <Menu />
+            <Sidebar />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import SidebarItem from "./SidebarItem";
 
-function Menu() {
+function Sidebar() {
   return (
     <aside className="w-56 p-4 bg-neutral-50 min-h-full ">
       <nav className="font-custom">
@@ -53,4 +53,4 @@ function Menu() {
   );
 }
 
-export default Menu;
+export default Sidebar;
