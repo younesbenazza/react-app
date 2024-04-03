@@ -1,6 +1,17 @@
 import BookItem from "./BookItem";
+import { useEffect, useState } from "react";
 
 export default function BookTable() {
+  const [BooksData, setBooksData] = useState();
+  useEffect(() => {
+    const url = "http://127.0.0.1:8000/api/library";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setBooksData(data.books);
+      });
+  }, []);
+
   return (
     <div className="p-2">
       <table className="w-full border font-custom  ">
@@ -36,10 +47,17 @@ export default function BookTable() {
           </tr>
         </thead>
         <tbody>
-          <BookItem />
-          <BookItem />
-          <BookItem />
-          <BookItem />
+          {BooksData ? (
+            BooksData.map((book) => {
+              return <BookItem key={book.id} book={book} />;
+            })
+          ) : (
+            <tr>
+              <td colSpan={9} className="text-center p-2">
+                لا يوجد بيانات
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

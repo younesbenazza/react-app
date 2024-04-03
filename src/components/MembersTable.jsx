@@ -38,11 +38,17 @@ export default function MembersTable() {
           </tr>
         </thead>
         <tbody>
-          {MembersData
-            ? MembersData.map((member) => {
-                return <MemberItem key={member.id} member={member} />;
-              })
-            : null}
+          {MembersData ? (
+            MembersData.map((member) => {
+              return <MemberItem key={member.id} member={member} />;
+            })
+          ) : (
+            <tr>
+              <td colSpan={6} className="text-center p-2">
+                لا يوجد بيانات
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
