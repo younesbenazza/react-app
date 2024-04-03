@@ -10,3 +10,7 @@
   direction: rtl;
   unicode-bidi: embed;
 }
+
+input:not(:placeholder-shown) ~ .custom-input {
+  @apply -top-3 text-xs text-blue-400;
+}

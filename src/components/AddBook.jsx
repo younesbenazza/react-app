@@ -29,10 +29,11 @@ export default function AddBook() {
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
                   id="title"
                   autoComplete="off"
+                  placeholder=" "
                 />
                 <label
                   htmlFor="title"
-                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all peer-focus:text-blue-500 text-neutral-600"
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   عنوان الكتاب
                 </label>
@@ -43,10 +44,11 @@ export default function AddBook() {
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
                   id="type"
                   autoComplete="off"
+                  placeholder=" "
                 />
                 <label
                   htmlFor="type"
-                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all peer-focus:text-blue-500 text-neutral-600"
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   صنف الكتاب
                 </label>
@@ -60,10 +62,11 @@ export default function AddBook() {
                   className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
                   id="author"
                   autoComplete="off"
+                  placeholder=" "
                 />
                 <label
                   htmlFor="author"
-                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all peer-focus:text-blue-500 text-neutral-600"
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   المؤلف
                 </label>
@@ -72,13 +75,14 @@ export default function AddBook() {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer "
                   id="classNum"
                   autoComplete="off"
+                  placeholder=" "
                 />
                 <label
                   htmlFor="classNum"
-                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all peer-focus:text-blue-500 text-neutral-600"
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   رقم الصنف
                 </label>
@@ -119,10 +123,11 @@ export default function AddBook() {
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer "
                   id="price"
                   autoComplete="off"
+                  placeholder=" "
                 />
                 <label
                   htmlFor="price"
-                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-2 transition-all peer-focus:text-blue-500 text-neutral-600"
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   السعر
                 </label>
