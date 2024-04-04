@@ -13,9 +13,9 @@ export default function BookTable() {
   }, []);
 
   return (
-    <div className="p-2">
+    <div className="p-2 overflow-y-auto max-h-[500px]">
       <table className="w-full border font-custom  ">
-        <thead className="bg-gray-100 border-b-2 border-gray-300">
+        <thead className="sticky -top-2.5 bg-gray-100 border-b-2 border-gray-300">
           <tr>
             <th className="p-3 text-sm font-semibold tracking-wide text-center">
               إجراء تعديل

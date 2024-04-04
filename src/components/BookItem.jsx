@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function MemberItem() {
+export default function BookItem({ book }) {
   return (
     <tr className="bg-white border font-custom hover:bg-neutral-50">
       <td className="p-3 flex items-center justify-center gap-4">

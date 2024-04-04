@@ -23,8 +23,11 @@ export default function MembersTable() {
             <th className="p-3 text-sm font-semibold tracking-wide text-right">
               القسم
             </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-right w-1/3">
-              العنوان
+            <th className="p-3 text-sm font-semibold tracking-wide text-right ">
+              مكان الإزدياد
+            </th>
+            <th className="p-3 text-sm font-semibold tracking-wide text-right ">
+              تاريخ الإزدياد
             </th>
             <th className="p-3 text-sm font-semibold tracking-wide text-right">
               الإسم
@@ -44,7 +47,7 @@ export default function MembersTable() {
             })
           ) : (
             <tr>
-              <td colSpan={6} className="text-center p-2">
+              <td colSpan={7} className="text-center p-2">
                 لا يوجد بيانات
               </td>
             </tr>

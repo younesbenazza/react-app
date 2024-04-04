@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function AddBook() {
+export default function AddEditBook({ book }) {
   const [open, setOpen] = useState(false);
   const [publishDate, setPublishDate] = useState(null);
   const [enterDate, setEnterDate] = useState(null);
@@ -90,12 +90,12 @@ export default function AddBook() {
             </div>
             <div className="p-2 flex gap-3">
               <DatePicker
-                selected={publishDate}
-                onChange={(date) => setPublishDate(date)}
+                selected={enterDate}
+                onChange={(date) => setEnterDate(date)}
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
                 className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
-                placeholderText="تاريخ النشر"
+                placeholderText="تاريخ الدخول"
                 required
                 showYearDropdown
                 showMonthDropdown
@@ -103,12 +103,12 @@ export default function AddBook() {
                 maxDate={new Date()}
               />
               <DatePicker
-                selected={enterDate}
-                onChange={(date) => setEnterDate(date)}
+                selected={publishDate}
+                onChange={(date) => setPublishDate(date)}
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
                 className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
-                placeholderText="تاريخ الدخول"
+                placeholderText="تاريخ النشر"
                 required
                 showYearDropdown
                 showMonthDropdown
@@ -135,7 +135,7 @@ export default function AddBook() {
             </div>
           </form>
           <div className="flex items-center justify-end m-4 p-2 gap-4">
-            <button className="bg-blue-400 py-2 px-5 rounded-lg font-custom">
+            <button className=" bg-blue-400 py-2 px-5 rounded-lg font-custom">
               أضف
             </button>
           </div>
