@@ -1,1 +1,1 @@
-# Library management ui built using React
+# Library management ui built using React + Vite
