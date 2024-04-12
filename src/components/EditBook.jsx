@@ -4,35 +4,33 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function AddEditBook({ book }) {
+export default function AddBook({ book }) {
   const [open, setOpen] = useState(false);
   const [publishDate, setPublishDate] = useState(null);
   const [enterDate, setEnterDate] = useState(null);
   return (
-    <div className="p-4 mx-4">
-      <button
-        className="bg-blue-300 hover:bg-blue-400 py-2 px-4 rounded-lg font-custom"
-        onClick={() => setOpen(true)}
-      >
-        إضافة كتاب
+    <div className="">
+      <button className="w-8 h-8" onClick={() => setOpen(true)}>
+        <img src="../../icons/edit.png" alt="" />
       </button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div className="m-2 p-5">
           <div className="text-right p-2 font-custom">
-            يرجى إدخال معلومات الكتاب
+            يرجى تغيير معلومات الكتاب
           </div>
           <form action="" className="flex flex-col items-end p-4">
             <div className="p-2 flex flex-row-reverse gap-3">
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
-                  id="title"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  id={"title" + book.id}
                   autoComplete="off"
                   placeholder=" "
+                  required
                 />
                 <label
-                  htmlFor="title"
+                  htmlFor={"title" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   عنوان الكتاب
@@ -41,13 +39,14 @@ export default function AddEditBook({ book }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
-                  id="type"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  id={"type" + book.id}
                   autoComplete="off"
                   placeholder=" "
+                  required
                 />
                 <label
-                  htmlFor="type"
+                  htmlFor={"type" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   صنف الكتاب
@@ -59,13 +58,14 @@ export default function AddEditBook({ book }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer"
-                  id="author"
+                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  id={"author" + book.id}
                   autoComplete="off"
                   placeholder=" "
+                  required
                 />
                 <label
-                  htmlFor="author"
+                  htmlFor={"author" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   المؤلف
@@ -75,13 +75,14 @@ export default function AddEditBook({ book }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer "
-                  id="classNum"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  id={"classNum" + book.id}
                   autoComplete="off"
                   placeholder=" "
+                  required
                 />
                 <label
-                  htmlFor="classNum"
+                  htmlFor={"classNum" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   رقم الصنف
@@ -116,29 +117,46 @@ export default function AddEditBook({ book }) {
                 maxDate={new Date()}
               />
             </div>
-            <div className="flex gap-3 p-2">
+            <div className="flex gap-3 p-2 ">
+              <div className="relative my-2 ">
+                <input
+                  type="text"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor peer "
+                  id={"status" + book.id}
+                  autoComplete="off"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor={"status" + book.id}
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
+                >
+                  الحالة
+                </label>
+              </div>
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor required peer "
-                  id="price"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  id={"price" + book.id}
                   autoComplete="off"
                   placeholder=" "
+                  required
                 />
                 <label
-                  htmlFor="price"
+                  htmlFor={"price" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   السعر
                 </label>
               </div>
             </div>
+            <div className="flex items-center justify-end m-4 p-2 gap-4">
+              <button className=" bg-blue-400 py-2 px-5 rounded-lg font-custom">
+                تعديل
+              </button>
+            </div>
           </form>
-          <div className="flex items-center justify-end m-4 p-2 gap-4">
-            <button className=" bg-blue-400 py-2 px-5 rounded-lg font-custom">
-              أضف
-            </button>
-          </div>
         </div>
       </Modal>
     </div>
