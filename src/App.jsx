@@ -8,8 +8,46 @@ import Main from "./pages/Main";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Login from "./pages/Login";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [openbook, setOpenbook] = useState(false);
+  const [books, setBooks] = useState([]);
+  function toggleShow() {
+    setOpenbook(!openbook);
+  }
+  const baseUrl = "http://127.0.0.1:8000/";
+  useEffect(() => {
+    const url = baseUrl + "books/";
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setBooks(data.Books);
+      });
+  }, []);
+
+  function AddBookFunc(newBook) {
+    const url = baseUrl + "books/add/";
+    console.log(localStorage.getItem("access"));
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      Authorization: "Bearer " + localStorage.getItem("access"),
+      body: JSON.stringify(newBook),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Something went wrong");
+        }
+      })
+      .then((data) => {
+        toggleShow();
+        setBooks([...books, data.book]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
   const Layout = () => {
     return (
       <div className="h-screen">
@@ -45,7 +83,14 @@ function App() {
         },
         {
           path: "books",
-          element: <Books />,
+          element: (
+            <Books
+              AddBookFunc={AddBookFunc}
+              books={books}
+              toggleShow={toggleShow}
+              openbook={openbook}
+            />
+          ),
         },
         {
           path: "archive",

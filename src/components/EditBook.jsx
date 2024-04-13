@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function AddBook({ book }) {
+export default function EditBook({ book, id }) {
   const [open, setOpen] = useState(false);
   const [publishDate, setPublishDate] = useState(null);
   const [enterDate, setEnterDate] = useState(null);
@@ -24,13 +24,13 @@ export default function AddBook({ book }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
-                  id={"title" + book.id}
+                  id={"title" + id}
                   autoComplete="off"
                   placeholder=" "
                   required
                 />
                 <label
-                  htmlFor={"title" + book.id}
+                  htmlFor={"title" + id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   عنوان الكتاب
@@ -40,13 +40,13 @@ export default function AddBook({ book }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
-                  id={"type" + book.id}
+                  id={"type" + id}
                   autoComplete="off"
                   placeholder=" "
                   required
                 />
                 <label
-                  htmlFor={"type" + book.id}
+                  htmlFor={"type" + id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   صنف الكتاب
@@ -59,13 +59,13 @@ export default function AddBook({ book }) {
                 <input
                   type="text"
                   className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
-                  id={"author" + book.id}
+                  id={"author" + id}
                   autoComplete="off"
                   placeholder=" "
                   required
                 />
                 <label
-                  htmlFor={"author" + book.id}
+                  htmlFor={"author" + id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   المؤلف
@@ -76,13 +76,13 @@ export default function AddBook({ book }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
-                  id={"classNum" + book.id}
+                  id={"classNum" + id}
                   autoComplete="off"
                   placeholder=" "
                   required
                 />
                 <label
-                  htmlFor={"classNum" + book.id}
+                  htmlFor={"classNum" + id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   رقم الصنف
@@ -122,13 +122,13 @@ export default function AddBook({ book }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor peer "
-                  id={"status" + book.id}
+                  id={"status" + id}
                   autoComplete="off"
                   placeholder=" "
                   required
                 />
                 <label
-                  htmlFor={"status" + book.id}
+                  htmlFor={"status" + id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   الحالة
@@ -138,13 +138,13 @@ export default function AddBook({ book }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
-                  id={"price" + book.id}
+                  id={"price" + id}
                   autoComplete="off"
                   placeholder=" "
                   required
                 />
                 <label
-                  htmlFor={"price" + book.id}
+                  htmlFor={"price" + id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   السعر

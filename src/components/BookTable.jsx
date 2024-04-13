@@ -1,17 +1,6 @@
 import BookItem from "./BookItem";
-import { useEffect, useState } from "react";
 
-export default function BookTable() {
-  const [BooksData, setBooksData] = useState();
-  useEffect(() => {
-    const url = "http://127.0.0.1:8000/api/library";
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setBooksData(data.books);
-      });
-  }, []);
-
+export default function BookTable({ books }) {
   return (
     <div className="p-2 overflow-y-auto max-h-[500px]">
       <table className="w-full border font-custom  ">
@@ -47,9 +36,9 @@ export default function BookTable() {
           </tr>
         </thead>
         <tbody>
-          {BooksData ? (
-            BooksData.map((book) => {
-              return <BookItem key={book.id} book={book} />;
+          {books ? (
+            books.map((book, index) => {
+              return <BookItem key={index} id={index + 1} book={book} />;
             })
           ) : (
             <tr>
