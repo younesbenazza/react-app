@@ -1,6 +1,6 @@
 import BookItem from "./BookItem";
 
-export default function BookTable({ books }) {
+export default function BookTable({ books, search }) {
   return (
     <div className="p-2 overflow-y-auto max-h-[500px]">
       <table className="w-full border font-custom  ">
@@ -36,9 +36,9 @@ export default function BookTable({ books }) {
           </tr>
         </thead>
         <tbody>
-          {books ? (
+          {books.length > 0 ? (
             books.map((book, index) => {
-              return <BookItem key={index} id={index + 1} book={book} />;
+              return <BookItem key={index} book={book} id={index + 1} />;
             })
           ) : (
             <tr>

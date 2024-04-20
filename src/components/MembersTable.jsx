@@ -1,17 +1,6 @@
 import MemberItem from "./MemberItem";
-import { useEffect, useState } from "react";
 
-export default function MembersTable() {
-  const [MembersData, setMembersData] = useState();
-  useEffect(() => {
-    const url = "http://127.0.0.1:8000/api/library/";
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setMembersData(data.members);
-      });
-  }, []);
-
+export default function MembersTable({ members }) {
   return (
     <div className="p-2">
       <table className="w-full border font-custom  ">
@@ -41,8 +30,8 @@ export default function MembersTable() {
           </tr>
         </thead>
         <tbody>
-          {MembersData ? (
-            MembersData.map((member) => {
+          {members.length > 0 ? (
+            members.map((member) => {
               return <MemberItem key={member.id} member={member} />;
             })
           ) : (

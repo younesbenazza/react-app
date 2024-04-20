@@ -4,33 +4,45 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function EditBook({ book, id }) {
-  const [open, setOpen] = useState(false);
-  const [publishDate, setPublishDate] = useState(null);
-  const [enterDate, setEnterDate] = useState(null);
+export default function EditBook({ toggleShow, openbook, book }) {
+  const [publishDate, setPublishDate] = useState(book.published_date);
+  const [enterDate, setEnterDate] = useState(book.entry_date);
+  const [title, setTitle] = useState(book.title);
+  const [type, setType] = useState(book.category);
+  const [author, setAuthor] = useState(book.author);
+  const [classNum, setClassNum] = useState(book.class_number);
+  const [price, setPrice] = useState(book.price);
+
   return (
     <div className="">
-      <button className="w-8 h-8" onClick={() => setOpen(true)}>
+      <button className="w-8 h-8" onClick={toggleShow}>
         <img src="../../icons/edit.png" alt="" />
       </button>
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal open={openbook} onClose={toggleShow}>
         <div className="m-2 p-5">
           <div className="text-right p-2 font-custom">
             يرجى تغيير معلومات الكتاب
           </div>
-          <form action="" className="flex flex-col items-end p-4">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+            className="flex flex-col items-end p-4"
+          >
             <div className="p-2 flex flex-row-reverse gap-3">
               <div className="relative my-2">
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
-                  id={"title" + id}
+                  id={"title" + book.id}
                   autoComplete="off"
                   placeholder=" "
                   required
+                  value={title}
+                  onChange={(data) => setTitle(data.target.value)}
                 />
                 <label
-                  htmlFor={"title" + id}
+                  htmlFor={"title" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   عنوان الكتاب
@@ -40,13 +52,15 @@ export default function EditBook({ book, id }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
-                  id={"type" + id}
+                  id={"type" + book.id}
                   autoComplete="off"
                   placeholder=" "
                   required
+                  value={type}
+                  onChange={(data) => setType(data.target.value)}
                 />
                 <label
-                  htmlFor={"type" + id}
+                  htmlFor={"type" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   صنف الكتاب
@@ -59,13 +73,15 @@ export default function EditBook({ book, id }) {
                 <input
                   type="text"
                   className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
-                  id={"author" + id}
+                  id={"author" + book.id}
                   autoComplete="off"
                   placeholder=" "
                   required
+                  value={author}
+                  onChange={(data) => setAuthor(data.target.value)}
                 />
                 <label
-                  htmlFor={"author" + id}
+                  htmlFor={"author" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   المؤلف
@@ -76,13 +92,15 @@ export default function EditBook({ book, id }) {
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
-                  id={"classNum" + id}
+                  id={"classNum" + book.id}
                   autoComplete="off"
                   placeholder=" "
                   required
+                  onChange={(data) => setClassNum(data.target.value)}
+                  value={classNum}
                 />
                 <label
-                  htmlFor={"classNum" + id}
+                  htmlFor={"classNum" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   رقم الصنف
@@ -108,7 +126,7 @@ export default function EditBook({ book, id }) {
                 onChange={(date) => setPublishDate(date)}
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
-                className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
+                className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer "
                 placeholderText="تاريخ النشر"
                 required
                 showYearDropdown
@@ -117,34 +135,20 @@ export default function EditBook({ book, id }) {
                 maxDate={new Date()}
               />
             </div>
-            <div className="flex gap-3 p-2 ">
-              <div className="relative my-2 ">
-                <input
-                  type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor peer "
-                  id={"status" + id}
-                  autoComplete="off"
-                  placeholder=" "
-                  required
-                />
-                <label
-                  htmlFor={"status" + id}
-                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
-                >
-                  الحالة
-                </label>
-              </div>
+            <div className="flex gap-3 p-2">
               <div className="relative my-2">
                 <input
                   type="text"
                   className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
-                  id={"price" + id}
+                  id={"price" + book.id}
                   autoComplete="off"
                   placeholder=" "
                   required
+                  value={price}
+                  onChange={(data) => setPrice(data.target.value)}
                 />
                 <label
-                  htmlFor={"price" + id}
+                  htmlFor={"price" + book.id}
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
                   السعر
@@ -152,7 +156,7 @@ export default function EditBook({ book, id }) {
               </div>
             </div>
             <div className="flex items-center justify-end m-4 p-2 gap-4">
-              <button className=" bg-blue-400 py-2 px-5 rounded-lg font-custom">
+              <button className=" bg-blue-400 hover:bg-blue-500 py-2 px-5 rounded-lg font-custom">
                 تعديل
               </button>
             </div>

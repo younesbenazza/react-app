@@ -29,6 +29,7 @@ export default function AddBook({ AddBookFunc, toggleShow, openbook }) {
       >
         إضافة كتاب
       </button>
+
       <Modal open={openbook} onClose={toggleShow}>
         <div className="m-2 p-5">
           <div className="text-right p-2 font-custom">
@@ -43,8 +44,9 @@ export default function AddBook({ AddBookFunc, toggleShow, openbook }) {
                 author: author,
                 class_number: classNum,
                 price: price,
-                entry_date: enterDate,
-                published_date: publishDate,
+                entry_date: enterDate.toISOString().slice(0, 10),
+                published_date: publishDate.toISOString().slice(0, 10),
+                status: "available",
               };
               AddBookFunc(newBook);
               clearinputs();
