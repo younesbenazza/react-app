@@ -1,6 +1,6 @@
 import BookItem from "./BookItem";
 
-export default function BookTable({ books, search }) {
+export default function BookTable({ books, search, deleteBook, editBook }) {
   return (
     <div className="p-2 overflow-y-auto max-h-[500px]">
       <table className="w-full border font-custom  ">
@@ -37,9 +37,24 @@ export default function BookTable({ books, search }) {
         </thead>
         <tbody>
           {books.length > 0 ? (
-            books.map((book, index) => {
-              return <BookItem key={index} book={book} id={index + 1} />;
-            })
+            books
+              .filter((book) =>
+                book
+                  ? book.title.toLowerCase().includes(search.toLowerCase()) ||
+                    book.author.toLowerCase().includes(search.toLowerCase())
+                  : null
+              )
+              .map((book, index) => {
+                return (
+                  <BookItem
+                    key={index}
+                    book={book}
+                    id={index + 1}
+                    deleteBook={deleteBook}
+                    editBook={editBook}
+                  />
+                );
+              })
           ) : (
             <tr>
               <td colSpan={9} className="text-center p-2">

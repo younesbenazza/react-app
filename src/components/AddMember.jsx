@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function AddMember({ AddMemberFunc, toggleShow, openmember }) {
+export default function AddMember({ addMember, toggleShow, openmember }) {
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [birthdate, setBirthdate] = useState(null);
@@ -41,7 +41,8 @@ export default function AddMember({ AddMemberFunc, toggleShow, openmember }) {
                 birthplace: birthplace,
                 classname: classname,
               };
-              AddMemberFunc(newMember);
+              addMember(newMember);
+
               clearinputs();
             }}
             className="flex flex-col items-end p-4 my-3"

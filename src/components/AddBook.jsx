@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function AddBook({ AddBookFunc, toggleShow, openbook }) {
+export default function AddBook({ addBook, toggleShow, openbook }) {
   const [publishDate, setPublishDate] = useState(null);
   const [enterDate, setEnterDate] = useState(null);
   const [title, setTitle] = useState("");
@@ -48,7 +48,7 @@ export default function AddBook({ AddBookFunc, toggleShow, openbook }) {
                 published_date: publishDate.toISOString().slice(0, 10),
                 status: "available",
               };
-              AddBookFunc(newBook);
+              addBook(newBook);
               clearinputs();
             }}
             className="flex flex-col items-end p-4"

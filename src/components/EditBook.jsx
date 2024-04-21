@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function EditBook({ toggleShow, openbook, book }) {
+export default function EditBook({ toggleShow, openbook, book, editBook }) {
   const [publishDate, setPublishDate] = useState(book.published_date);
   const [enterDate, setEnterDate] = useState(book.entry_date);
   const [title, setTitle] = useState(book.title);
@@ -12,6 +12,7 @@ export default function EditBook({ toggleShow, openbook, book }) {
   const [author, setAuthor] = useState(book.author);
   const [classNum, setClassNum] = useState(book.class_number);
   const [price, setPrice] = useState(book.price);
+  const [status, setStatus] = useState(book.status);
 
   return (
     <div className="">
@@ -26,6 +27,19 @@ export default function EditBook({ toggleShow, openbook, book }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+
+              const updatedBook = {
+                title: title,
+                category: type,
+                author: author,
+                class_number: classNum,
+                price: price,
+                entry_date: enterDate,
+                status: status,
+                published_date: publishDate,
+              };
+              toggleShow();
+              editBook(book.id, updatedBook);
             }}
             className="flex flex-col items-end p-4"
           >
@@ -110,7 +124,9 @@ export default function EditBook({ toggleShow, openbook, book }) {
             <div className="p-2 flex gap-3">
               <DatePicker
                 selected={enterDate}
-                onChange={(date) => setEnterDate(date)}
+                onChange={(date) =>
+                  setEnterDate(date.toISOString().slice(0, 10))
+                }
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
                 className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
@@ -123,7 +139,9 @@ export default function EditBook({ toggleShow, openbook, book }) {
               />
               <DatePicker
                 selected={publishDate}
-                onChange={(date) => setPublishDate(date)}
+                onChange={(date) =>
+                  setPublishDate(date.toISOString().slice(0, 10))
+                }
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
                 className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer "
@@ -136,6 +154,18 @@ export default function EditBook({ toggleShow, openbook, book }) {
               />
             </div>
             <div className="flex gap-3 p-2">
+              <div className="my-2">
+                <select
+                  onChange={(e) => setStatus(e.target.value)}
+                  value={status}
+                  className="bg-neutral-50 border-b w-40 focus:border-blue-600"
+                >
+                  <option value="available">متاح</option>
+                  <option value="rented">مستعار</option>
+                  <option value="lost">ضائع</option>
+                </select>
+              </div>
+
               <div className="relative my-2">
                 <input
                   type="text"

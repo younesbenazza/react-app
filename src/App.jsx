@@ -21,26 +21,13 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
 
 function App() {
-  const [openpopup, setOpenpopup] = useState(false);
-  const [books, setBooks] = useState([]);
   const [members, setMembers] = useState([]);
-  function toggleShow() {
-    setOpenpopup(!openpopup);
-  }
-  const baseUrl = "http://127.0.0.1:8000/";
-  useEffect(() => {
-    const url = baseUrl + "books/";
-    fetch(baseUrl + "books/")
-      .then((response) => response.json())
-      .then((data) => {
-        setBooks(data.Books);
-      });
-    fetch(baseUrl + "students/")
-      .then((response) => response.json())
-      .then((data) => {
-        setMembers(data.Students);
-      });
-  }, []);
+  /*
+  fetch(baseUrl + "students/")
+    .then((response) => response.json())
+    .then((data) => {
+      setMembers(data.Students);
+    });
 
   function AddBookFunc(newBook) {
     const url = baseUrl + "books/add/";
@@ -85,7 +72,7 @@ function App() {
       .catch((e) => {
         console.log(e);
       });
-  }
+  }*/
   const Layout = () => {
     return (
       <div className="h-screen">
@@ -135,14 +122,7 @@ function App() {
         },
         {
           path: "books",
-          element: (
-            <Books
-              AddBookFunc={AddBookFunc}
-              books={books}
-              toggleShow={toggleShow}
-              openbook={openpopup}
-            />
-          ),
+          element: <Books />,
         },
         {
           path: "archive",
@@ -162,14 +142,7 @@ function App() {
         },
         {
           path: "members",
-          element: (
-            <Members
-              AddMemberFunc={AddMemberFunc}
-              members={members}
-              toggleShow={toggleShow}
-              openmember={openpopup}
-            />
-          ),
+          element: <Members />,
         },
       ],
     },

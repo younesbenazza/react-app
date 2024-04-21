@@ -2,7 +2,7 @@ import { useState } from "react";
 import EditBook from "./EditBook";
 import DeleteBook from "./DeleteBook";
 
-export default function BookItem({ book, id }) {
+export default function BookItem({ book, id, deleteBook, editBook }) {
   const [openpopup, setOpenpopup] = useState(false);
 
   function toggleShow() {
@@ -26,8 +26,13 @@ export default function BookItem({ book, id }) {
   return (
     <tr className="bg-white border font-custom hover:bg-neutral-50">
       <td className="p-3 flex items-center justify-center gap-4">
-        <DeleteBook />
-        <EditBook book={book} toggleShow={toggleShow} openbook={openpopup} />
+        <DeleteBook deleteBook={deleteBook} id={book.id} />
+        <EditBook
+          book={book}
+          toggleShow={toggleShow}
+          openbook={openpopup}
+          editBook={editBook}
+        />
       </td>
       <td className="p-3 text-sm  text-gray-700 ">{status}</td>
       <td className="p-3 text-sm text-right text-gray-700">{book.price} </td>

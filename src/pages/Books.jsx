@@ -1,17 +1,74 @@
 import AddBook from "../components/AddBook";
 import BookTable from "../components/BookTable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import api from "../api";
 
-function Books({ AddBookFunc, books, toggleShow, openbook }) {
+function Books({}) {
+  const [books, setBooks] = useState([]);
+  const [openpopup, setOpenpopup] = useState(false);
+
+  function toggleShow() {
+    setOpenpopup(!openpopup);
+  }
+  useEffect(() => {
+    getBooks();
+  }, []);
+
+  const getBooks = () => {
+    api
+      .get("/books/")
+      .then((res) => res.data)
+      .then((data) => {
+        setBooks(data.Books);
+      })
+      .catch((err) => alert(err));
+  };
+
+  const deleteBook = (id) => {
+    api
+      .delete(`/books/delete/${id}/`)
+      .then((res) => {
+        if (res.status === 204) alert("Book deleted!");
+        else alert("Failed to delete Book.");
+        setBooks(books.filter((book) => book.id !== id));
+      })
+      .catch((error) => alert(error));
+  };
+
+  const addBook = (book) => {
+    api
+      .post("/books/add/", book)
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => {
+        setBooks([...books, data.New_Book]);
+        data.New_Book ? toggleShow() : console.log(data);
+      })
+      .catch((err) => alert(err));
+  };
+
+  const editBook = (bookId, updatedBook) => {
+    api
+      .put(`/books/update/${bookId}/`, updatedBook)
+      .then((res) => {
+        return res.data;
+      })
+      .then((data) => {
+        setBooks(books.map((book) => (book.id === bookId ? data.book : book)));
+      })
+      .catch((err) => alert(err));
+  };
+
   const [search, setSearch] = useState("");
   return (
     <div className="">
       <div className="">
         <div className="flex items-center place-content-between">
           <AddBook
-            AddBookFunc={AddBookFunc}
+            addBook={addBook}
             toggleShow={toggleShow}
-            openbook={openbook}
+            openbook={openpopup}
           />
           <input
             type="text"
@@ -28,7 +85,9 @@ function Books({ AddBookFunc, books, toggleShow, openbook }) {
           books={books}
           search={search}
           toggleShow={toggleShow}
-          openbook={openbook}
+          openbook={openpopup}
+          deleteBook={deleteBook}
+          editBook={editBook}
         />
       </div>
     </div>

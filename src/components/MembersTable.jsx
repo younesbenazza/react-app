@@ -1,6 +1,6 @@
 import MemberItem from "./MemberItem";
 
-export default function MembersTable({ members }) {
+export default function MembersTable({ members, search, deleteMember }) {
   return (
     <div className="p-2">
       <table className="w-full border font-custom  ">
@@ -31,9 +31,23 @@ export default function MembersTable({ members }) {
         </thead>
         <tbody>
           {members.length > 0 ? (
-            members.map((member) => {
-              return <MemberItem key={member.id} member={member} />;
-            })
+            members
+              .filter(
+                (member) =>
+                  member.first_name
+                    .toLowerCase()
+                    .includes(search.toLowerCase()) ||
+                  member.last_name.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((member) => {
+                return (
+                  <MemberItem
+                    key={member.id}
+                    member={member}
+                    deleteMember={deleteMember}
+                  />
+                );
+              })
           ) : (
             <tr>
               <td colSpan={7} className="text-center p-2">
