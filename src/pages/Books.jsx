@@ -3,32 +3,18 @@ import BookTable from "../components/BookTable";
 import { useState, useEffect } from "react";
 import api from "../api";
 
-function Books({}) {
-  const [books, setBooks] = useState([]);
+function Books({ books, setBooks }) {
   const [openpopup, setOpenpopup] = useState(false);
 
   function toggleShow() {
     setOpenpopup(!openpopup);
   }
-  useEffect(() => {
-    getBooks();
-  }, []);
-
-  const getBooks = () => {
-    api
-      .get("/books/")
-      .then((res) => res.data)
-      .then((data) => {
-        setBooks(data.Books);
-      })
-      .catch((err) => alert(err));
-  };
 
   const deleteBook = (id) => {
     api
       .delete(`/books/delete/${id}/`)
       .then((res) => {
-        if (res.status === 204) alert("Book deleted!");
+        if (res.status === 200) alert("Book deleted!");
         else alert("Failed to delete Book.");
         setBooks(books.filter((book) => book.id !== id));
       })
@@ -65,11 +51,9 @@ function Books({}) {
     <div className="">
       <div className="">
         <div className="flex items-center place-content-between">
-          <AddBook
-            addBook={addBook}
-            toggleShow={toggleShow}
-            openbook={openpopup}
-          />
+          <h1 className="text-right font-semibold text-lg p-4 mx-6 font-custom">
+            قائمة الكتب
+          </h1>
           <input
             type="text"
             placeholder="البحث عن الكتب"
@@ -77,9 +61,11 @@ function Books({}) {
             onChange={(data) => setSearch(data.target.value)}
             className="bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
           />
-          <h1 className="text-right font-semibold text-lg p-4 mx-6 font-custom">
-            قائمة الكتب
-          </h1>
+          <AddBook
+            addBook={addBook}
+            toggleShow={toggleShow}
+            openbook={openpopup}
+          />
         </div>
         <BookTable
           books={books}

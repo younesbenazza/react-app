@@ -4,7 +4,7 @@ import api from "../api";
 import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 
-function ProtectedRoute({ children }) {
+function ProtectedRoute({ children, setIsLogged }) {
   const [isAuthorized, setIsAuthorized] = useState(null);
 
   useEffect(() => {
@@ -20,12 +20,15 @@ function ProtectedRoute({ children }) {
       if (res.status === 200) {
         localStorage.setItem(ACCESS_TOKEN, res.data.access);
         setIsAuthorized(true);
+        setIsLogged(true);
       } else {
         setIsAuthorized(false);
+        setIsLogged(false);
       }
     } catch (error) {
       console.log(error);
       setIsAuthorized(false);
+      setIsLogged(false);
     }
   };
 
@@ -33,6 +36,7 @@ function ProtectedRoute({ children }) {
     const token = localStorage.getItem(ACCESS_TOKEN);
     if (!token) {
       setIsAuthorized(false);
+      setIsLogged(false);
       return;
     }
     const decoded = jwtDecode(token);
@@ -43,6 +47,7 @@ function ProtectedRoute({ children }) {
       await refreshToken();
     } else {
       setIsAuthorized(true);
+      setIsLogged(true);
     }
   };
 

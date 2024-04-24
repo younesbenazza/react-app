@@ -46,18 +46,18 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
                 price: price,
                 entry_date: enterDate.toISOString().slice(0, 10),
                 published_date: publishDate.toISOString().slice(0, 10),
-                status: "available",
+                statu: "available",
               };
               addBook(newBook);
               clearinputs();
             }}
-            className="flex flex-col items-end p-4"
+            className="flex flex-col p-4"
           >
-            <div className="p-2 flex flex-row-reverse gap-3">
+            <div className="p-2 flex flex-row gap-3">
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id="title"
                   autoComplete="off"
                   placeholder=" "
@@ -75,7 +75,7 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id="type"
                   autoComplete="off"
                   placeholder=" "
@@ -92,11 +92,11 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
               </div>
             </div>
 
-            <div className="flex gap-3 p-2 flex-row-reverse">
+            <div className="flex gap-3 p-2 flex-row">
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id="author"
                   autoComplete="off"
                   placeholder=" "
@@ -115,7 +115,7 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer "
                   id="classNum"
                   autoComplete="off"
                   placeholder=" "
@@ -133,19 +133,6 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
             </div>
             <div className="p-2 flex gap-3">
               <DatePicker
-                selected={enterDate}
-                onChange={(date) => setEnterDate(date)}
-                locale={ar}
-                dateFormat="yyyy/MM/dd"
-                className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
-                placeholderText="تاريخ الدخول"
-                required
-                showYearDropdown
-                showMonthDropdown
-                scrollableYearDropdown
-                maxDate={new Date()}
-              />
-              <DatePicker
                 selected={publishDate}
                 onChange={(date) => setPublishDate(date)}
                 locale={ar}
@@ -158,12 +145,25 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
                 scrollableYearDropdown
                 maxDate={new Date()}
               />
+              <DatePicker
+                selected={enterDate}
+                onChange={(date) => setEnterDate(date)}
+                locale={ar}
+                dateFormat="yyyy/MM/dd"
+                className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
+                placeholderText="تاريخ الدخول"
+                required
+                showYearDropdown
+                showMonthDropdown
+                scrollableYearDropdown
+                maxDate={new Date()}
+              />
             </div>
             <div className="flex gap-3 p-2">
               <div className="relative my-2">
                 <input
-                  type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  type="number"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer "
                   id="price"
                   autoComplete="off"
                   placeholder=" "
@@ -179,7 +179,7 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
                 </label>
               </div>
             </div>
-            <div className="flex items-center justify-end m-4 p-2 gap-4">
+            <div className="flex m-4 p-2 gap-4">
               <button className=" bg-blue-400 hover:bg-blue-500 py-2 px-5 rounded-lg font-custom">
                 أضف
               </button>

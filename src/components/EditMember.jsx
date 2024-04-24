@@ -4,12 +4,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function EditMember({ member, toggleShow, openmember }) {
+export default function EditMember({
+  member,
+  toggleShow,
+  openmember,
+  editMember,
+}) {
   const [lastname, setLastname] = useState(member.last_name);
   const [firstname, setFirstname] = useState(member.first_name);
-  const [birthdate, setBirthdate] = useState(member.birthdate);
-  const [birthplace, setBirthplace] = useState(member.birthplace);
-  const [classname, setClassname] = useState(member.classname);
+  const [birthdate, setBirthdate] = useState(member.birth_date);
+  const [birthplace, setBirthplace] = useState(member.birth_place);
+  const [classname, setClassname] = useState(member.class_name);
 
   return (
     <div className="">
@@ -24,19 +29,19 @@ export default function EditMember({ member, toggleShow, openmember }) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              const newMember = {
+              const updatedMember = {
                 first_name: firstname,
                 last_name: lastname,
-                birthdate: birthdate.toISOString().slice(0, 10),
-                birthplace: birthplace,
-                classname: classname,
+                birth_date: birthdate,
+                birth_place: birthplace,
+                class_name: classname,
               };
-              AddMemberFunc(newMember);
-              clearinputs();
+              editMember(member.id, updatedMember);
+              toggleShow();
             }}
-            className="flex flex-col items-end p-4 my-3"
+            className="flex flex-col p-4 my-3"
           >
-            <div className="p-2 flex flex-row-reverse gap-3 my-2">
+            <div className="p-2 flex flex-row gap-3 my-2">
               <div className="relative my-2">
                 <input
                   type="text"
@@ -78,7 +83,9 @@ export default function EditMember({ member, toggleShow, openmember }) {
             <div className="p-2 flex gap-3 my-2">
               <DatePicker
                 selected={birthdate}
-                onChange={(date) => setBirthdate(date)}
+                onChange={(date) =>
+                  setBirthdate(date.toISOString().slice(0, 10))
+                }
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
                 className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
@@ -128,7 +135,7 @@ export default function EditMember({ member, toggleShow, openmember }) {
                 </label>
               </div>
             </div>
-            <div className="flex items-center justify-end m-4 p-2 gap-4">
+            <div className=" m-4 p-2 gap-4">
               <button className=" bg-blue-400 hover:bg-blue-500 py-2 px-5 rounded-lg font-custom">
                 تعديل
               </button>

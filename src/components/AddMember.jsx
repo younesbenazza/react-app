@@ -37,21 +37,21 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
               const newMember = {
                 first_name: firstname,
                 last_name: lastname,
-                birthdate: birthdate.toISOString().slice(0, 10),
-                birthplace: birthplace,
-                classname: classname,
+                birth_date: birthdate.toISOString().slice(0, 10),
+                birth_place: birthplace,
+                class_name: classname,
               };
               addMember(newMember);
 
               clearinputs();
             }}
-            className="flex flex-col items-end p-4 my-3"
+            className="flex flex-col p-4 my-3"
           >
-            <div className="p-2 flex flex-row-reverse gap-3 my-2">
+            <div className="p-2 flex flex-row gap-3 my-2">
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id="firstname"
                   autoComplete="off"
                   placeholder=" "
@@ -69,7 +69,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id="lastname"
                   autoComplete="off"
                   placeholder=" "
@@ -103,7 +103,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id="birthplace"
                   autoComplete="off"
                   placeholder=" "
@@ -123,7 +123,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer "
                   id="classname"
                   autoComplete="off"
                   placeholder=" "
@@ -139,7 +139,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
                 </label>
               </div>
             </div>
-            <div className="flex items-center justify-end m-4 p-2 gap-4">
+            <div className=" m-4 p-2 gap-4">
               <button className=" bg-blue-400 hover:bg-blue-500 py-2 px-5 rounded-lg font-custom">
                 أضف
               </button>

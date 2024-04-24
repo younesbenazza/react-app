@@ -12,7 +12,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
   const [author, setAuthor] = useState(book.author);
   const [classNum, setClassNum] = useState(book.class_number);
   const [price, setPrice] = useState(book.price);
-  const [status, setStatus] = useState(book.status);
+  const [status, setStatus] = useState(book.statu);
 
   return (
     <div className="">
@@ -25,6 +25,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
             يرجى تغيير معلومات الكتاب
           </div>
           <form
+            id={book.id}
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -35,19 +36,19 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
                 class_number: classNum,
                 price: price,
                 entry_date: enterDate,
-                status: status,
+                statu: status,
                 published_date: publishDate,
               };
-              toggleShow();
               editBook(book.id, updatedBook);
+              toggleShow();
             }}
-            className="flex flex-col items-end p-4"
+            className="flex flex-col p-4"
           >
-            <div className="p-2 flex flex-row-reverse gap-3">
+            <div className="p-2 flex flex-row gap-3">
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id={"title" + book.id}
                   autoComplete="off"
                   placeholder=" "
@@ -65,7 +66,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id={"type" + book.id}
                   autoComplete="off"
                   placeholder=" "
@@ -82,11 +83,11 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
               </div>
             </div>
 
-            <div className="flex gap-3 p-2 flex-row-reverse">
+            <div className="flex gap-3 p-2 flex-row">
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer"
+                  className="bg-neutral-50 border-b w-56 py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer"
                   id={"author" + book.id}
                   autoComplete="off"
                   placeholder=" "
@@ -105,7 +106,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer "
                   id={"classNum" + book.id}
                   autoComplete="off"
                   placeholder=" "
@@ -123,21 +124,6 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
             </div>
             <div className="p-2 flex gap-3">
               <DatePicker
-                selected={enterDate}
-                onChange={(date) =>
-                  setEnterDate(date.toISOString().slice(0, 10))
-                }
-                locale={ar}
-                dateFormat="yyyy/MM/dd"
-                className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
-                placeholderText="تاريخ الدخول"
-                required
-                showYearDropdown
-                showMonthDropdown
-                scrollableYearDropdown
-                maxDate={new Date()}
-              />
-              <DatePicker
                 selected={publishDate}
                 onChange={(date) =>
                   setPublishDate(date.toISOString().slice(0, 10))
@@ -152,24 +138,27 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
                 scrollableYearDropdown
                 maxDate={new Date()}
               />
+              <DatePicker
+                selected={enterDate}
+                onChange={(date) =>
+                  setEnterDate(date.toISOString().slice(0, 10))
+                }
+                locale={ar}
+                dateFormat="yyyy/MM/dd"
+                className="bg-neutral-50 w-56 border-b my-1 py-1 px-2 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors text-right placeholder-neutral-600 font-custom cursor-pointer"
+                placeholderText="تاريخ الدخول"
+                required
+                showYearDropdown
+                showMonthDropdown
+                scrollableYearDropdown
+                maxDate={new Date()}
+              />
             </div>
             <div className="flex gap-3 p-2">
-              <div className="my-2">
-                <select
-                  onChange={(e) => setStatus(e.target.value)}
-                  value={status}
-                  className="bg-neutral-50 border-b w-40 focus:border-blue-600"
-                >
-                  <option value="available">متاح</option>
-                  <option value="rented">مستعار</option>
-                  <option value="lost">ضائع</option>
-                </select>
-              </div>
-
               <div className="relative my-2">
                 <input
                   type="text"
-                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors rtl-cursor  peer "
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer "
                   id={"price" + book.id}
                   autoComplete="off"
                   placeholder=" "
@@ -184,8 +173,19 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
                   السعر
                 </label>
               </div>
+              <div className="my-2">
+                <select
+                  onChange={(e) => setStatus(e.target.value)}
+                  value={status}
+                  className="bg-neutral-50 border-b w-40 focus:border-blue-600 cursor-pointer outline-blue-600"
+                >
+                  <option value="available">متاح</option>
+                  <option value="rented">مستعار</option>
+                  <option value="lost">ضائع</option>
+                </select>
+              </div>
             </div>
-            <div className="flex items-center justify-end m-4 p-2 gap-4">
+            <div className=" m-4 p-2 gap-4">
               <button className=" bg-blue-400 hover:bg-blue-500 py-2 px-5 rounded-lg font-custom">
                 تعديل
               </button>

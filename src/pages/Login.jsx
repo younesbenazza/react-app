@@ -3,13 +3,13 @@ import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import LoadingIndicator from "../components/LoadingIndicator";
-function Login() {
+function Login({ setIsLogged }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-
+  setIsLogged(false);
   const handleSubmit = async (e) => {
     setLoading(true);
     setError(false);
@@ -30,23 +30,23 @@ function Login() {
 
   return (
     <>
-      <div className="h-screen flex justify-center">
+      <div className="h-screen flex justify-center bg-neutral-50">
         {error && (
           <div className=" h-12 w-1/2 m-2  rounded bg-red-500 text-white fixed font-custom text-center p-2">
             خطأ في إسم المستخدم أو كلمة السر
           </div>
         )}
-        <div className=" flex flex-col items-center justify-center  font-custom">
+        <div className=" flex flex-col items-center justify-center  font-custom ">
           <div className="flex items-center place-content-center gap-3 hover:cursor-pointer p-5 m-4">
-            <span className=" font-medium text-lg  ">مكتبتي</span>
             <img
               className="w-12 h-12"
               src="../../../icons/library.png"
               alt=""
             />
+            <span className=" font-medium text-lg  ">مكتبتي</span>
           </div>
           <form
-            className="border flex flex-col px-10 py-4 rounded"
+            className="border flex flex-col px-10 py-4 rounded bg-white"
             onSubmit={handleSubmit}
           >
             <h1 className="text-center m-3">يرجى تسجيل الدخول</h1>

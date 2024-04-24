@@ -19,64 +19,51 @@ import Loan from "./pages/Loan";
 import LibraryCard from "./pages/LibraryCard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Register from "./pages/Register";
+import AboutUs from "./pages/AboutUs";
+import api from "./api";
 
 function App() {
   const [members, setMembers] = useState([]);
-  /*
-  fetch(baseUrl + "students/")
-    .then((response) => response.json())
-    .then((data) => {
-      setMembers(data.Students);
-    });
+  const [books, setBooks] = useState([]);
+  const [isLogged, setIsLogged] = useState(false);
 
-  function AddBookFunc(newBook) {
-    const url = baseUrl + "books/add/";
-    console.log(localStorage.getItem("access"));
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      Authorization: "Bearer," + localStorage.getItem("access"),
-      body: JSON.stringify(newBook),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Something went wrong");
-        }
-      })
+  useEffect(() => {
+    if (isLogged) {
+      getMembers();
+    }
+  }, [isLogged]);
+
+  useEffect(() => {
+    if (isLogged) {
+      getBooks();
+    }
+  }, [isLogged]);
+
+  const getMembers = () => {
+    api
+      .get("/students/")
+      .then((res) => res.data)
       .then((data) => {
-        toggleShow();
-        setBooks([...books, data.book]);
+        setMembers(data.Students);
       })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
-  function AddMemberFunc(newBook) {
-    const url = baseUrl + "books/add/";
-    console.log(localStorage.getItem("access"));
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      Authorization: "Bearer " + localStorage.getItem("access"),
-      body: JSON.stringify(newBook),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Something went wrong");
-        }
-      })
+      .catch((err) => alert(err));
+  };
+  const getBooks = () => {
+    api
+      .get("/books/")
+      .then((res) => res.data)
       .then((data) => {
-        toggleShow();
-        setMembers([...members, data.student]);
+        setBooks(data.Books);
       })
-      .catch((e) => {
-        console.log(e);
-      });
-  }*/
+      .catch((err) => alert(err));
+  };
   const Layout = () => {
     return (
       <div className="h-screen">
         <div className="flex flex-row min-h-full w-screen">
+          <div className="border-x border-s-neutral-300">
+            <Sidebar />
+          </div>
           <div className="flex flex-col flex-grow">
             <div className="bg-neutral-50 h-10">
               <Header />
@@ -87,9 +74,6 @@ function App() {
             <div className="bg-neutral-50">
               <Footer />
             </div>
-          </div>
-          <div className="border-x border-s-neutral-300">
-            <Sidebar />
           </div>
         </div>
       </div>
@@ -110,7 +94,7 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedRoute>
+        <ProtectedRoute setIsLogged={setIsLogged}>
           <Layout />
         </ProtectedRoute>
       ),
@@ -118,11 +102,13 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Main />,
+          element: (
+            <Main bookLength={books.length} memberLength={members.length} />
+          ),
         },
         {
           path: "books",
-          element: <Books />,
+          element: <Books setBooks={setBooks} books={books} />,
         },
         {
           path: "archive",
@@ -142,13 +128,13 @@ function App() {
         },
         {
           path: "members",
-          element: <Members />,
+          element: <Members members={members} setMembers={setMembers} />,
         },
       ],
     },
     {
       path: "login",
-      element: <Login />,
+      element: <Login setIsLogged={setIsLogged} />,
     },
     {
       path: "register",
@@ -157,6 +143,10 @@ function App() {
     {
       path: "logout",
       element: <Logout />,
+    },
+    {
+      path: "aboutus",
+      element: <AboutUs />,
     },
   ]);
 

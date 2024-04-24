@@ -6,7 +6,7 @@ export default function SidebarItem({ icon, title, url }) {
       {({ isActive }) => {
         return (
           <li
-            className={`flex items-center gap-3 hover:cursor-pointer my-2 flex-row-reverse rounded-md p-2 ${
+            className={`flex items-center gap-3 hover:cursor-pointer my-2 flex-row rounded-md p-2 ${
               isActive
                 ? "bg-neutral-200 hover:bg-neutral-300"
                 : "bg-neutral-50 hover:bg-neutral-100"

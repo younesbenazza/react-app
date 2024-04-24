@@ -2,11 +2,11 @@ import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
   return (
-    <aside className="w-56 p-4 bg-neutral-50 min-h-full ">
+    <aside className="w-56 p-4 bg-neutral-50 min-h-full">
       <nav className="font-custom">
         <div className="flex items-center place-content-center gap-3 hover:cursor-pointer pd-3 m-4">
-          <span className=" font-medium hover:text-md  ">مكتبتي</span>
           <img className="w-10 h-10" src="../../../icons/library.png" alt="" />
+          <span className=" font-medium hover:text-md  ">مكتبتي</span>
         </div>
         <ul className="text-center">
           <li className="my-3 text-slate-600">الصفحة الرئيسية</li>
