@@ -49,6 +49,7 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
                 statu: "available",
               };
               addBook(newBook);
+              toggleShow();
               clearinputs();
             }}
             className="flex flex-col p-4"

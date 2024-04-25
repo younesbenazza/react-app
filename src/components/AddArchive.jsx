@@ -45,7 +45,7 @@ export default function AddArchive({ addArchive, toggleShow, openarchive }) {
                 document_name: documentname,
               };
               addArchive(newArchive);
-
+              toggleShow();
               clearinputs();
             }}
             className="flex flex-col p-4 my-3"

@@ -27,7 +27,17 @@ function App() {
   const [archives, setArchives] = useState([]);
   const [books, setBooks] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
+  const [succeed, setSucceed] = useState(false);
+  const [failed, setFailed] = useState(false);
 
+  function AlertSucceed() {
+    setSucceed(true);
+    setTimeout(() => setSucceed(false), 2000);
+  }
+  function AlertFailed() {
+    setFailed(true);
+    setTimeout(() => setFailed(false), 2000);
+  }
   useEffect(() => {
     if (isLogged) {
       getMembers();
@@ -126,11 +136,29 @@ function App() {
         },
         {
           path: "books",
-          element: <Books setBooks={setBooks} books={books} />,
+          element: (
+            <Books
+              setBooks={setBooks}
+              books={books}
+              AlertSucceed={AlertSucceed}
+              AlertFailed={AlertFailed}
+              succeed={succeed}
+              failed={failed}
+            />
+          ),
         },
         {
           path: "archive",
-          element: <Archive archives={archives} setArchives={setArchives} />,
+          element: (
+            <Archive
+              archives={archives}
+              setArchives={setArchives}
+              AlertSucceed={AlertSucceed}
+              AlertFailed={AlertFailed}
+              succeed={succeed}
+              failed={failed}
+            />
+          ),
         },
         {
           path: "statistics",
@@ -146,7 +174,16 @@ function App() {
         },
         {
           path: "members",
-          element: <Members members={members} setMembers={setMembers} />,
+          element: (
+            <Members
+              members={members}
+              setMembers={setMembers}
+              AlertSucceed={AlertSucceed}
+              AlertFailed={AlertFailed}
+              succeed={succeed}
+              failed={failed}
+            />
+          ),
         },
       ],
     },

@@ -3,7 +3,14 @@ import MembersTable from "../components/MembersTable";
 import { useState, useEffect } from "react";
 import api from "../api";
 
-export default function Members({ members, setMembers }) {
+export default function Members({
+  members,
+  setMembers,
+  AlertSucceed,
+  succeed,
+  AlertFailed,
+  failed,
+}) {
   const [openpopup, setOpenpopup] = useState(false);
 
   function toggleShow() {
@@ -14,29 +21,33 @@ export default function Members({ members, setMembers }) {
     api
       .delete(`/student/delete/${id}/`)
       .then((res) => {
-        if (res.status === 200) alert("student deleted!");
-        else alert("Failed to delete student.");
+        if (res.status === 200) AlertSucceed();
+        else AlertFailed();
         setMembers(members.filter((member) => member.id !== id));
       })
-      .catch((error) => alert(error));
+      .catch((error) => AlertFailed());
   };
 
   const addMember = (Member) => {
     api
       .post("/student/add/", Member)
       .then((res) => {
+        if (res.status === 200) AlertSucceed();
+        else AlertFailed();
         return res.data;
       })
       .then((data) => {
         setMembers([...members, data.New_Student]);
       })
-      .catch((err) => alert(err));
+      .catch((err) => AlertFailed());
   };
 
   const editMember = (MemberId, updatedMember) => {
     api
       .put(`/student/update/${MemberId}/`, updatedMember)
       .then((res) => {
+        if (res.status === 200) AlertSucceed();
+        else AlertFailed();
         return res.data;
       })
       .then((data) => {
@@ -46,15 +57,29 @@ export default function Members({ members, setMembers }) {
           )
         );
       })
-      .catch((err) => alert(err));
+      .catch((err) => AlertFailed());
   };
 
   const [search, setSearch] = useState("");
   return (
-    <div className="">
+    <div className="font-custom">
+      {succeed && (
+        <div className="flex justify-center ">
+          <div className="fixed bg-green-500 hover:bg-green-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
+            تمت العملية بنجاح
+          </div>
+        </div>
+      )}
+      {failed && (
+        <div className="flex justify-center">
+          <div className="fixed bg-red-500 hover:bg-red-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
+            فشلت العملية
+          </div>
+        </div>
+      )}
       <div className="">
         <div className="flex items-center place-content-between">
-          <h1 className="text-right font-semibold text-lg p-4 mx-6 font-custom">
+          <h1 className="text-right font-semibold text-lg p-4 mx-6 ">
             قائمة التلاميذ
           </h1>
           <input

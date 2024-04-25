@@ -3,10 +3,16 @@ import api from "../api";
 import AddArchive from "../components/AddArchive";
 import ArchiveTable from "../components/ArchiveTable";
 
-export default function Archive({ archives, setArchives }) {
+export default function Archive({
+  archives,
+  setArchives,
+  AlertSucceed,
+  succeed,
+  AlertFailed,
+  failed,
+}) {
   const [openpopup, setOpenpopup] = useState(false);
   const [search, setSearch] = useState("");
-  const [succeed, setSucceed] = useState("");
 
   function toggleShow() {
     setOpenpopup(!openpopup);
@@ -16,43 +22,63 @@ export default function Archive({ archives, setArchives }) {
     api
       .delete(`/archive/delete/${id}/`)
       .then((res) => {
-        if (res.status === 200) alert("Archive deleted!");
-        else alert("Failed to delete Archive.");
+        if (res.status === 200) AlertSucceed();
+        else AlertFailed();
         setArchives(archives.filter((archive) => archive.id !== id));
       })
-      .catch((error) => alert(error));
+      .catch((error) => AlertFailed());
   };
 
   const addArchive = (archive) => {
     api
       .post("/archive/add/", archive)
       .then((res) => {
+        if (res.status === 200) AlertSucceed()
+        else AlertFailed();
         return res.data;
       })
       .then((data) => {
         setArchives([...archives, data.Archive]);
-        data.Archive ? toggleShow() : console.log(data);
+       
       })
-      .catch((err) => alert(err));
+      .catch((err) => AlertFailed());
   };
 
   const editBook = (bookId, updatedBook) => {
     api
       .put(`/books/update/${bookId}/`, updatedBook)
       .then((res) => {
+        if (res.status === 200) AlertSucceed()
+        else AlertFailed();
         return res.data;
       })
       .then((data) => {
         setBooks(books.map((book) => (book.id === bookId ? data.book : book)));
+      
       })
-      .catch((err) => alert(err));
+      .catch((err) => AlertFailed());
   };
 
   return (
-    <div className="">
+    <div className="font-custom">
+      {succeed && (
+        <div className="flex justify-center ">
+          <div className="fixed bg-green-500 hover:bg-green-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
+            تمت العملية بنجاح
+          </div>
+        </div>
+      )}
+      {failed && (
+        <div className="flex justify-center">
+          <div className="fixed bg-red-500 hover:bg-red-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
+            فشلت العملية
+          </div>
+        </div>
+      )}
+
       <div className="">
         <div className="flex items-center place-content-between">
-          <h1 className="text-right font-semibold text-lg p-4 mx-6 font-custom">
+          <h1 className="text-right font-semibold text-lg p-4 mx-6 ">
             قائمة الأرشيف
           </h1>
           <input

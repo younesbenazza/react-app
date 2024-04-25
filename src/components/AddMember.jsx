@@ -42,6 +42,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
                 class_name: classname,
               };
               addMember(newMember);
+              toggleShow();
               clearinputs();
             }}
             className="flex flex-col p-4 my-3"
