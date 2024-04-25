@@ -24,6 +24,7 @@ import api from "./api";
 
 function App() {
   const [members, setMembers] = useState([]);
+  const [archives, setArchives] = useState([]);
   const [books, setBooks] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
 
@@ -36,6 +37,12 @@ function App() {
   useEffect(() => {
     if (isLogged) {
       getBooks();
+    }
+  }, [isLogged]);
+
+  useEffect(() => {
+    if (isLogged) {
+      getArchives();
     }
   }, [isLogged]);
 
@@ -54,6 +61,17 @@ function App() {
       .then((res) => res.data)
       .then((data) => {
         setBooks(data.Books);
+      })
+      .catch((err) => alert(err));
+  };
+
+  const getArchives = () => {
+    api
+      .get("/archive/")
+      .then((res) => res.data)
+      .then((data) => {
+        console.log(data.Archive);
+        setArchives(data.Archive);
       })
       .catch((err) => alert(err));
   };
@@ -112,7 +130,7 @@ function App() {
         },
         {
           path: "archive",
-          element: <Archive />,
+          element: <Archive archives={archives} setArchives={setArchives} />,
         },
         {
           path: "statistics",

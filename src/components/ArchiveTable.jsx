@@ -1,11 +1,6 @@
-import MemberItem from "./MemberItem";
+import ArchiveItem from "./ArchiveItem";
 
-export default function MembersTable({
-  members,
-  search,
-  deleteMember,
-  editMember,
-}) {
+export default function ArchiveTable({ archives, search, deleteArchive }) {
   return (
     <div className="p-2 overflow-y-auto max-h-[500px]">
       <table className="w-full border font-custom  ">
@@ -26,40 +21,43 @@ export default function MembersTable({
             <th className="p-3 text-sm font-semibold tracking-wide text-right ">
               مكان الإزدياد
             </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-right w-28">
-              القسم
+            <th className="p-3 text-sm font-semibold tracking-wide text-right">
+              رقم الصنف
             </th>
-            <th className="p-3 text-sm font-semibold tracking-wide text-center w-40">
+            <th className="p-3 text-sm font-semibold tracking-wide text-right">
+              رقم الوثيقة
+            </th>
+
+            <th className="p-3 text-sm font-semibold tracking-wide text-center">
               إجراء تعديل
             </th>
           </tr>
         </thead>
         <tbody>
-          {members.length > 0 ? (
-            members
-              .filter((member) =>
-                member
-                  ? member.first_name
+          {archives.length > 0 ? (
+            archives
+              .filter((archive) =>
+                archive
+                  ? archive.last_name
                       .toLowerCase()
                       .includes(search.toLowerCase()) ||
-                    member.last_name
+                    archive.first_name
                       .toLowerCase()
                       .includes(search.toLowerCase())
                   : null
               )
-              .map((member) => {
+              .map((archive, index) => {
                 return (
-                  <MemberItem
-                    key={member.id}
-                    member={member}
-                    deleteMember={deleteMember}
-                    editMember={editMember}
+                  <ArchiveItem
+                    key={index}
+                    archive={archive}
+                    deleteArchive={deleteArchive}
                   />
                 );
               })
           ) : (
             <tr>
-              <td colSpan={7} className="text-center p-2">
+              <td colSpan={8} className="text-center p-2">
                 لا يوجد بيانات
               </td>
             </tr>

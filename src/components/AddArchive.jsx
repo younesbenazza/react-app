@@ -4,12 +4,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 
-export default function AddMember({ addMember, toggleShow, openmember }) {
+export default function AddArchive({ addArchive, toggleShow, openarchive }) {
   const [lastname, setLastname] = useState("");
   const [firstname, setFirstname] = useState("");
   const [birthdate, setBirthdate] = useState(null);
   const [birthplace, setBirthplace] = useState("");
   const [classname, setClassname] = useState("");
+  const [documentname, setDocumentname] = useState("");
 
   function clearinputs() {
     setLastname("");
@@ -17,6 +18,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
     setBirthplace("");
     setBirthdate("");
     setClassname("");
+    setDocumentname("");
   }
   return (
     <div className="">
@@ -24,28 +26,32 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
         className="bg-blue-300 hover:bg-blue-400 py-2 px-4 rounded-lg font-custom mx-6"
         onClick={toggleShow}
       >
-        إضافة تلميذ
+        إضافة ملف
       </button>
-      <Modal open={openmember} onClose={toggleShow}>
+      <Modal open={openarchive} onClose={toggleShow}>
         <div className="m-2 p-5">
           <div className="text-right p-2 font-custom">
-            يرجى إدخال معلومات التلميذ
+            يرجى إدخال معلومات الملف
           </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              const newMember = {
+              const newArchive = {
                 first_name: firstname,
                 last_name: lastname,
                 birth_date: birthdate.toISOString().slice(0, 10),
                 birth_place: birthplace,
                 class_name: classname,
+                document_name: documentname,
               };
-              addMember(newMember);
+              addArchive(newArchive);
+
               clearinputs();
             }}
             className="flex flex-col p-4 my-3"
           >
+            <span className="p-3 font-custom">معلومات الشخص :</span>
+
             <div className="p-2 flex flex-row gap-3 my-2">
               <div className="relative my-2">
                 <input
@@ -118,6 +124,8 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
                 </label>
               </div>
             </div>
+            <span className="p-3 font-custom">مكان تواجد ملفه :</span>
+
             <div className="flex gap-3 p-2">
               <div className="relative my-2">
                 <input
@@ -134,7 +142,25 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
                   htmlFor="classname"
                   className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
                 >
-                  القسم
+                  رقم الصنف
+                </label>
+              </div>
+              <div className="relative my-2">
+                <input
+                  type="text"
+                  className="bg-neutral-50 w-56 border-b py-1 focus:outline-none focus:border-blue-600 focus:border-b-2 transition-colors  peer "
+                  id="documentname"
+                  autoComplete="off"
+                  placeholder=" "
+                  required
+                  value={documentname}
+                  onChange={(data) => setDocumentname(data.target.value)}
+                />
+                <label
+                  htmlFor="documentname"
+                  className="absolute right-2 top-1 font-custom cursor-text peer-focus:text-xs peer-focus:-top-3  transition-all peer-focus:text-blue-500 text-neutral-600 custom-input"
+                >
+                  رقم الوثيقة
                 </label>
               </div>
             </div>

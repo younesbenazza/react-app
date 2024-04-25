@@ -44,6 +44,9 @@ export default function BookTable({ books, search, deleteBook, editBook }) {
               .filter((book) =>
                 book
                   ? book.title.toLowerCase().includes(search.toLowerCase()) ||
+                    book.category
+                      .toLowerCase()
+                      .includes(search.toLowerCase()) ||
                     book.author.toLowerCase().includes(search.toLowerCase())
                   : null
               )

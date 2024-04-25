@@ -9,16 +9,19 @@ function Main({ bookLength, memberLength }) {
           title={"عدد الكتب"}
           number={bookLength}
           icon={"../../icons/books.png"}
+          type={["كتب", "كتاب"]}
         />
         <Card
           title={"عدد التلاميذ المسجلين"}
           number={memberLength}
           icon={"../../icons/person.png"}
+          type={["تلاميذ", "تلميذ"]}
         />
         <Card
           title={"عدد الإعارات"}
           number={"0"}
           icon={"../../icons/loan.png"}
+          type={["إعارات", "إعارة"]}
         />
       </div>
       <div className="mx-2">
