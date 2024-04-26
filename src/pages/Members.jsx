@@ -65,14 +65,14 @@ export default function Members({
     <div className="font-custom">
       {succeed && (
         <div className="flex justify-center ">
-          <div className="fixed bg-green-500 hover:bg-green-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
+          <div className="fixed  z-50 bg-green-500 hover:bg-green-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
             تمت العملية بنجاح
           </div>
         </div>
       )}
       {failed && (
         <div className="flex justify-center">
-          <div className="fixed bg-red-500 hover:bg-red-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
+          <div className="fixed  z-50 bg-red-500 hover:bg-red-600 p-4 w-1/3 rounded-lg text-center text-white cursor-default">
             فشلت العملية
           </div>
         </div>

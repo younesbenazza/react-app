@@ -33,28 +33,31 @@ export default function Archive({
     api
       .post("/archive/add/", archive)
       .then((res) => {
-        if (res.status === 200) AlertSucceed()
+        if (res.status === 200) AlertSucceed();
         else AlertFailed();
         return res.data;
       })
       .then((data) => {
         setArchives([...archives, data.Archive]);
-       
       })
       .catch((err) => AlertFailed());
   };
 
-  const editBook = (bookId, updatedBook) => {
+  const editArchive = (ArchiveId, updatedArchive) => {
     api
-      .put(`/books/update/${bookId}/`, updatedBook)
+      .put(`/archive/update/${ArchiveId}/`, updatedArchive)
       .then((res) => {
-        if (res.status === 200) AlertSucceed()
+        if (res.status === 200) AlertSucceed();
         else AlertFailed();
         return res.data;
       })
       .then((data) => {
-        setBooks(books.map((book) => (book.id === bookId ? data.book : book)));
-      
+        console.log(data);
+        setArchives(
+          archives.map((archive) =>
+            archive.id === ArchiveId ? data.Archive : archive
+          )
+        );
       })
       .catch((err) => AlertFailed());
   };
@@ -98,6 +101,7 @@ export default function Archive({
           archives={archives}
           search={search}
           deleteArchive={deleteArchive}
+          editArchive={editArchive}
         />
       </div>
     </div>

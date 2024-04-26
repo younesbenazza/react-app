@@ -9,3 +9,12 @@
 input:not(:placeholder-shown) ~ .custom-input {
   @apply -top-3 text-xs text-blue-600;
 }
+
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}

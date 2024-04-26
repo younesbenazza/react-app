@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Delete from "./Delete";
+import EditArchive from "./EditArchive";
 
-export default function ArchiveItem({ archive, deleteArchive }) {
+export default function ArchiveItem({ archive, deleteArchive, editArchive }) {
   const [openpopup, setOpenpopup] = useState(false);
 
   function toggleShow() {
@@ -31,6 +32,12 @@ export default function ArchiveItem({ archive, deleteArchive }) {
       </td>
 
       <td className="p-3 flex items-center justify-center gap-4">
+        <EditArchive
+          editArchive={editArchive}
+          archive={archive}
+          toggleShow={toggleShow}
+          openarchive={openpopup}
+        />
         <Delete
           deleteFunc={deleteArchive}
           id={archive.id}

@@ -26,17 +26,18 @@ function App() {
   const [members, setMembers] = useState([]);
   const [archives, setArchives] = useState([]);
   const [books, setBooks] = useState([]);
+  const [loans, setLoans] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const [succeed, setSucceed] = useState(false);
   const [failed, setFailed] = useState(false);
 
   function AlertSucceed() {
     setSucceed(true);
-    setTimeout(() => setSucceed(false), 2000);
+    setTimeout(() => setSucceed(false), 1500);
   }
   function AlertFailed() {
     setFailed(true);
-    setTimeout(() => setFailed(false), 2000);
+    setTimeout(() => setFailed(false), 1500);
   }
   useEffect(() => {
     if (isLogged) {
@@ -53,6 +54,12 @@ function App() {
   useEffect(() => {
     if (isLogged) {
       getArchives();
+    }
+  }, [isLogged]);
+
+  useEffect(() => {
+    if (isLogged) {
+      getLoans();
     }
   }, [isLogged]);
 
@@ -80,8 +87,17 @@ function App() {
       .get("/archive/")
       .then((res) => res.data)
       .then((data) => {
-        console.log(data.Archive);
         setArchives(data.Archive);
+      })
+      .catch((err) => alert(err));
+  };
+  const getLoans = () => {
+    api
+      .get("/rentedbooks/")
+      .then((res) => res.data)
+      .then((data) => {
+        setLoans(data.Rented);
+        console.log(loans);
       })
       .catch((err) => alert(err));
   };
@@ -166,7 +182,19 @@ function App() {
         },
         {
           path: "loan",
-          element: <Loan />,
+          element: (
+            <Loan
+              setLoans={setLoans}
+              loans={loans}
+              AlertSucceed={AlertSucceed}
+              AlertFailed={AlertFailed}
+              succeed={succeed}
+              failed={failed}
+              members={members}
+              books={books}
+              setBooks={setBooks}
+            />
+          ),
         },
         {
           path: "librarycard",

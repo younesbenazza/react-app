@@ -7,7 +7,7 @@ export default function MembersTable({
   editMember,
 }) {
   return (
-    <div className="p-2 overflow-y-auto max-h-[500px]">
+    <div className="p-2 overflow-y-auto max-h-[500px] ">
       <table className="w-full border font-custom  ">
         <thead className="sticky -top-2.5 bg-gray-100 border-b-2 border-gray-300">
           <tr>

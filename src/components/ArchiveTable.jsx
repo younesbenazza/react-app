@@ -1,6 +1,11 @@
 import ArchiveItem from "./ArchiveItem";
 
-export default function ArchiveTable({ archives, search, deleteArchive }) {
+export default function ArchiveTable({
+  archives,
+  search,
+  deleteArchive,
+  editArchive,
+}) {
   return (
     <div className="p-2 overflow-y-auto max-h-[500px]">
       <table className="w-full border font-custom  ">
@@ -43,6 +48,12 @@ export default function ArchiveTable({ archives, search, deleteArchive }) {
                       .includes(search.toLowerCase()) ||
                     archive.first_name
                       .toLowerCase()
+                      .includes(search.toLowerCase()) ||
+                    archive.birth_date
+                      .toLowerCase()
+                      .includes(search.toLowerCase()) ||
+                    archive.birth_place
+                      .toLowerCase()
                       .includes(search.toLowerCase())
                   : null
               )
@@ -52,6 +63,7 @@ export default function ArchiveTable({ archives, search, deleteArchive }) {
                     key={index}
                     archive={archive}
                     deleteArchive={deleteArchive}
+                    editArchive={editArchive}
                   />
                 );
               })
