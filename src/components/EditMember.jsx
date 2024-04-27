@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
+import moment from "moment";
 
 export default function EditMember({
   member,
@@ -84,7 +85,7 @@ export default function EditMember({
               <DatePicker
                 selected={birthdate}
                 onChange={(date) =>
-                  setBirthdate(date.toISOString().slice(0, 10))
+                  setBirthdate(moment(date).format("YYYY-MM-DD"))
                 }
                 locale={ar}
                 dateFormat="yyyy/MM/dd"

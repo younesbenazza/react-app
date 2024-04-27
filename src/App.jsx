@@ -97,7 +97,6 @@ function App() {
       .then((res) => res.data)
       .then((data) => {
         setLoans(data.Rented);
-        console.log(loans);
       })
       .catch((err) => alert(err));
   };

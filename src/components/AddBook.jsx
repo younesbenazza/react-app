@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
+import moment from "moment";
 
 export default function AddBook({ addBook, toggleShow, openbook }) {
   const [publishDate, setPublishDate] = useState(null);
@@ -44,8 +45,8 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
                 author: author,
                 class_number: classNum,
                 price: price,
-                entry_date: enterDate.toISOString().slice(0, 10),
-                published_date: publishDate.toISOString().slice(0, 10),
+                entry_date: moment(enterDate).format("YYYY-MM-DD"),
+                published_date: moment(publishDate).format("YYYY-MM-DD"),
                 statu: "available",
               };
               addBook(newBook);

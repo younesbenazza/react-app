@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
+import moment from "moment";
 
 export default function AddMember({ addMember, toggleShow, openmember }) {
   const [lastname, setLastname] = useState("");
@@ -37,7 +38,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
               const newMember = {
                 first_name: firstname,
                 last_name: lastname,
-                birth_date: birthdate.toISOString().slice(0, 10),
+                birth_date: moment(birthdate).format("YYYY-MM-DD"),
                 birth_place: birthplace,
                 class_name: classname,
               };

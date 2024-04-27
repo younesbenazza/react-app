@@ -8,6 +8,7 @@ export default function LoanItem({
   members,
   editLoan,
   editBook,
+  table,
 }) {
   const [openpopup, setOpenpopup] = useState(false);
   const [returned, setReturned] = useState(loan.rent_statu);
@@ -50,11 +51,12 @@ export default function LoanItem({
             ),
             0
           )}
+          {console.log(new Date())}
           <p>يوم</p>
         </div>
       </td>
       <td className="p-3 text-sm text-gray-700 ">
-        <div className="flex gap-0.5 justify-center">
+        <div className="flex gap-1 justify-center">
           {Math.max(
             Math.floor(
               (new Date(loan.return_date) - new Date()) / (1000 * 60 * 60 * 24)
@@ -62,20 +64,30 @@ export default function LoanItem({
             0
           )}
           <p>يوم</p>
+
+          {Math.max(
+            Math.floor(
+              (new Date(loan.return_date) - new Date()) / (1000 * 60 * 60)
+            ) % 24,
+            0
+          )}
+          <p>ساعة</p>
         </div>
       </td>
       <td className="p-3 text-sm text-center text-gray-700">
         {returned && (
           <button
             onClick={() => {
+              /*
               editLoan(loan.id, {
                 ...loan,
 
                 rent_statu: false,
               });
               editBook(book.id, { ...book, statu: "rented" });
+            */
             }}
-            className="w-28 border rounded-lg p-2 bg-green-500 text-white hover:bg-green-600"
+            className="w-28 border rounded-lg p-2 bg-green-500 text-white  cursor-default"
           >
             تم إرجاعه
           </button>
@@ -116,7 +128,9 @@ export default function LoanItem({
                     deleteLoan(loan.id);
                     const status =
                       book.statu === "rented" ? "available" : book.statu;
-                    editBook(book.id, { ...book, statu: status });
+                    table === "1"
+                      ? editBook(book.id, { ...book, statu: status })
+                      : null;
                     toggleShow();
                   }}
                   className=" bg-red-500 hover:bg-red-600 py-2 px-5 rounded-lg font-custom text-white"

@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
 import SmallBookTable from "./SmallBookTable";
 import SmallMemberTable from "./SmallMemberTable";
+import moment from "moment";
 
 export default function AddLoan({
   addLoan,
@@ -61,11 +62,12 @@ export default function AddLoan({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
+
                 const newLoan = {
                   book_id: bookId,
                   student_id: studentId,
-                  rent_date: rentdate.toISOString().slice(0, 10),
-                  return_date: returndate.toISOString().slice(0, 10),
+                  rent_date: moment(rentdate).format("YYYY-MM-DD"),
+                  return_date: moment(returndate).format("YYYY-MM-DD"),
                   rent_statu: false,
                 };
                 addLoan(newLoan);

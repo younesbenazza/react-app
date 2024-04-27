@@ -12,15 +12,21 @@ export default function BookItem({ book, deleteBook, editBook }) {
   var status;
   if (book.statu == "available") {
     status = (
-      <div className="bg-green-200 px-2 py-1 rounded-lg text-center">متاح</div>
+      <div className="bg-green-200 px-2 py-1 rounded-lg text-center cursor-default">
+        متاح
+      </div>
     );
   } else if (book.statu == "rented") {
     status = (
-      <div className="bg-blue-200 px-2 py-1 rounded-lg text-center">مستعار</div>
+      <div className="bg-blue-200 px-2 py-1 rounded-lg text-center cursor-default">
+        مستعار
+      </div>
     );
   } else if (book.statu == "lost") {
     status = (
-      <div className="bg-red-200 px-2 py-1 rounded-lg text-center">ضائع</div>
+      <div className="bg-red-200 px-2 py-1 rounded-lg text-center cursor-default">
+        ضائع
+      </div>
     );
   }
   return (

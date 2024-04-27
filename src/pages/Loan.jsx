@@ -18,6 +18,9 @@ export default function Loan({
 
   function toggleShow() {
     setOpenpopup(!openpopup);
+    !openpopup
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
   }
 
   const deleteLoan = (id) => {
@@ -41,7 +44,6 @@ export default function Loan({
       })
       .then((data) => {
         setLoans([...loans, data.Rentbook]);
-        console.log(data);
       })
       .catch((err) => AlertFailed());
   };
@@ -127,6 +129,7 @@ export default function Loan({
         books={books}
         editLoan={editLoan}
         editBook={editBook}
+        table={"1"}
       />
       <br />
       <hr />
@@ -154,6 +157,7 @@ export default function Loan({
         books={books}
         editLoan={editLoan}
         editBook={editBook}
+        table={"2"}
       />
     </div>
   );

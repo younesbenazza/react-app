@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ar from "date-fns/locale/ar";
+import moment from "moment";
 
 export default function EditBook({ toggleShow, openbook, book, editBook }) {
   const [publishDate, setPublishDate] = useState(book.published_date);
@@ -129,7 +130,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
               <DatePicker
                 selected={publishDate}
                 onChange={(date) =>
-                  setPublishDate(date.toISOString().slice(0, 10))
+                  setPublishDate(moment(date).format("YYYY-MM-DD"))
                 }
                 locale={ar}
                 dateFormat="yyyy/MM/dd"
@@ -144,7 +145,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
               <DatePicker
                 selected={enterDate}
                 onChange={(date) =>
-                  setEnterDate(date.toISOString().slice(0, 10))
+                  setEnterDate(moment(date).format("YYYY-MM-DD"))
                 }
                 locale={ar}
                 dateFormat="yyyy/MM/dd"

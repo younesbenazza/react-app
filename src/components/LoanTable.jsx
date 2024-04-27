@@ -8,6 +8,7 @@ export default function LoanTable({
   members,
   editLoan,
   editBook,
+  table,
 }) {
   function getObjectbyId(list, id) {
     return list ? list.find((object) => object.id === id) : "";
@@ -76,6 +77,7 @@ export default function LoanTable({
                     books={books}
                     editLoan={editLoan}
                     editBook={editBook}
+                    table={table}
                   />
                 );
               })
