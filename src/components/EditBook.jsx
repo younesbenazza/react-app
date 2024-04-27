@@ -13,6 +13,9 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
   const [classNum, setClassNum] = useState(book.class_number);
   const [price, setPrice] = useState(book.price);
   const [status, setStatus] = useState(book.statu);
+  const [ischecked, setIschecked] = useState(
+    true ? book.statu === "lost" : false
+  );
 
   return (
     <div className="">
@@ -173,16 +176,23 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
                   السعر
                 </label>
               </div>
-              <div className="my-2">
-                <select
-                  onChange={(e) => setStatus(e.target.value)}
-                  value={status}
-                  className="bg-neutral-50 border-b w-40 focus:border-blue-600 cursor-pointer outline-blue-600"
-                >
-                  <option value="available">متاح</option>
-                  <option value="rented">مستعار</option>
-                  <option value="lost">ضائع</option>
-                </select>
+              <div className="flex">
+                <p className="text-slate-600 font-sm">حالة الكتاب</p>
+                <div className="my-3 p-3 ">
+                  <input
+                    id={"lost" + book.id}
+                    type="checkbox"
+                    value="lost"
+                    checked={status === "lost"}
+                    onChange={(e) =>
+                      setStatus(e.target.checked ? "lost" : "available")
+                    }
+                    className=""
+                  />
+                  <label className="mx-2" htmlFor={"lost" + book.id}>
+                    ضائع
+                  </label>
+                </div>
               </div>
             </div>
             <div className=" m-4 p-2 gap-4">

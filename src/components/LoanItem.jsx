@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Delete from "./Delete";
+import Modal from "./Modal";
 
 export default function LoanItem({
   loan,
@@ -98,11 +98,41 @@ export default function LoanItem({
       </td>
 
       <td className="p-3 flex items-center justify-center gap-4">
-        <Delete
-          deleteFunc={deleteLoan}
-          id={loan.id}
-          text={"هل أنت متأكد من رغبتك في حذف هذه الإعارة"}
-        />
+        <div className="">
+          <button className="w-8 h-8" onClick={() => toggleShow()}>
+            <img src="../../icons/delete.png" alt="" />
+          </button>
+          <Modal open={openpopup} onClose={toggleShow}>
+            <div className="">
+              <div className="my-5 p-6">
+                <span className="text-lg font-bold p-4">
+                  هل أنت متأكد من رغبتك في حذف هذه الإعارة
+                </span>
+              </div>
+              <div className=" p-4"></div>
+              <div className="flex items-center mx-10 m-4 p-2 gap-4">
+                <button
+                  onClick={() => {
+                    deleteLoan(loan.id);
+                    const status =
+                      book.statu === "rented" ? "available" : book.statu;
+                    editBook(book.id, { ...book, statu: status });
+                    toggleShow();
+                  }}
+                  className=" bg-red-500 hover:bg-red-600 py-2 px-5 rounded-lg font-custom text-white"
+                >
+                  حذف
+                </button>
+                <button
+                  onClick={() => toggleShow()}
+                  className=" bg-blue-400 hover:bg-blue-500 py-2 px-5 rounded-lg font-custom"
+                >
+                  إلغاء
+                </button>
+              </div>
+            </div>
+          </Modal>
+        </div>
       </td>
     </tr>
   );
