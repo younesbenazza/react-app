@@ -147,7 +147,11 @@ function App() {
         {
           path: "/",
           element: (
-            <Main bookLength={books.length} memberLength={members.length} />
+            <Main
+              bookLength={books.length}
+              memberLength={members.length}
+              loanLength={loans.length}
+            />
           ),
         },
         {

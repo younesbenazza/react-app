@@ -1,7 +1,7 @@
 import AccountDetails from "../components/AccountDetails";
 import Card from "../components/Card";
 
-function Main({ bookLength, memberLength }) {
+function Main({ bookLength, memberLength, loanLength }) {
   return (
     <div className="mx-4 my-10">
       <div className="flex my-4 gap-3">
@@ -19,7 +19,7 @@ function Main({ bookLength, memberLength }) {
         />
         <Card
           title={"عدد الإعارات"}
-          number={"0"}
+          number={loanLength}
           icon={"../../icons/loan.png"}
           type={["إعارات", "إعارة"]}
         />
