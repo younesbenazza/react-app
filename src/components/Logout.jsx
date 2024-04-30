@@ -2,7 +2,7 @@ function Logout() {
   return (
     <div className="font-custom text-sm mx-3 flex justify-end ">
       <a
-        className=" hodver:text-red-600 p-3 border border-red-500 rounded-lg hover:bg-red-200 bg-red-100"
+        className="py-2.5 px-4 text-white border border-blue-50 rounded-3xl hover:bg-blue-600 bg-blue-500 font-semibold"
         href="/logout"
       >
         تسجيل الخروج

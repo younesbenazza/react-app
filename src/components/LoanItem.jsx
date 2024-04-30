@@ -65,8 +65,8 @@ export default function LoanItem({
           <p>يوم</p>
         </div>
       </td>
-      <td className="p-3 text-sm flex justify-center  ">
-        {daysLeft <= 0 && hoursLeft <= 0 && table === "1" ? (
+      <td className="p-3 text-sm flex items-center justify-center  ">
+        {daysLeft <= 0 && hoursLeft <= 0 /*&& table === "1" */ ? (
           <div className=" text-center w-32 bg-red-600 font-semibold cursor-default text-white rounded-lg p-2">
             إنتهى الوقت
           </div>

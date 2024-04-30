@@ -3,7 +3,7 @@ import SidebarItem from "./SidebarItem";
 function Sidebar() {
   return (
     <aside className="lg:w-56 p-4 bg-neutral-50 min-h-full">
-      <nav className="font-custom">
+      <nav className="font-custom ">
         <div className="hidden lg:block">
           <div className="flex items-center place-content-center gap-3 hover:cursor-pointer pd-3 m-4 ">
             <img
