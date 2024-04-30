@@ -8,12 +8,14 @@ export default function SidebarItem({ icon, title, url }) {
           <li
             className={`flex items-center gap-3 hover:cursor-pointer my-2 flex-row rounded-md p-2 ${
               isActive
-                ? "bg-neutral-200 hover:bg-neutral-300"
+                ? "bg-neutral-200 hover:bg-neutral-300 border border-sky-300"
                 : "bg-neutral-50 hover:bg-neutral-100"
             }`}
           >
             <img src={icon} alt="Icon" className="w-8 h-8" />
-            <span className="font-medium text-center">{title}</span>
+            <span className="font-medium text-center hidden lg:block">
+              {title}
+            </span>
           </li>
         );
       }}

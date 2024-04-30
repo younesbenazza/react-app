@@ -52,7 +52,6 @@ export default function Archive({
         return res.data;
       })
       .then((data) => {
-        console.log(data);
         setArchives(
           archives.map((archive) =>
             archive.id === ArchiveId ? data.Archive : archive

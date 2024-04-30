@@ -108,7 +108,7 @@ function App() {
             <Sidebar />
           </div>
           <div className="flex flex-col flex-grow">
-            <div className="bg-neutral-50 h-10">
+            <div className="bg-neutral-50 h-16">
               <Header />
             </div>
             <div className="bg-neutral-50 flex-grow">

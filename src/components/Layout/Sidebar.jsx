@@ -2,20 +2,30 @@ import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
   return (
-    <aside className="w-56 p-4 bg-neutral-50 min-h-full">
+    <aside className="lg:w-56 p-4 bg-neutral-50 min-h-full">
       <nav className="font-custom">
-        <div className="flex items-center place-content-center gap-3 hover:cursor-pointer pd-3 m-4">
-          <img className="w-10 h-10" src="../../../icons/library.png" alt="" />
-          <span className=" font-medium hover:text-md  ">مكتبتي</span>
+        <div className="hidden lg:block">
+          <div className="flex items-center place-content-center gap-3 hover:cursor-pointer pd-3 m-4 ">
+            <img
+              className="w-10 h-10"
+              src="../../../icons/library.png"
+              alt=""
+            />
+            <span className=" font-medium hover:text-md  ">مكتبتي</span>
+          </div>
         </div>
         <ul className="text-center">
-          <li className="my-3 text-slate-600">الصفحة الرئيسية</li>
+          <li className="my-3 text-slate-600 text-xs lg:text-base ">
+            الصفحة الرئيسية
+          </li>
           <SidebarItem
             title={"الصفحة الرئيسية"}
             icon={"../../../icons/homepage.png"}
             url={"/"}
           />
-          <li className="my-3 text-slate-600">إدارة المكتبة</li>
+          <li className="my-3 text-slate-600 text-xs lg:text-base">
+            إدارة المكتبة
+          </li>
           <SidebarItem
             title={"الكتب"}
             icon={"../../../icons/books.png"}
@@ -41,7 +51,9 @@ function Sidebar() {
             icon={"../../../icons/card.png"}
             url={"/librarycard"}
           />
-          <li className="my-3 text-slate-600">إدارة الأرشيف</li>
+          <li className="my-3 text-slate-600 text-xs lg:text-base">
+            إدارة الأرشيف
+          </li>
           <SidebarItem
             title={"الأرشيف"}
             icon={"../../../icons/archive.png"}
