@@ -223,6 +223,10 @@ function App() {
             />
           ),
         },
+        {
+          path: "aboutus",
+          element: <AboutUs />,
+        },
       ],
     },
     {
@@ -236,10 +240,6 @@ function App() {
     {
       path: "logout",
       element: <Logout />,
-    },
-    {
-      path: "aboutus",
-      element: <AboutUs />,
     },
   ]);
 

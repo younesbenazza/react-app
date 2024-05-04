@@ -62,6 +62,14 @@ function Sidebar() {
             icon={"../../../icons/archive.png"}
             url={"/archive"}
           />
+          <li className="my-3 text-slate-600 text-xs lg:text-base">
+            معلومات التطبيق
+          </li>
+          <SidebarItem
+            title={"عن التطبيق"}
+            icon={"../../../icons/archive.png"}
+            url={"/aboutus"}
+          />
         </ul>
       </nav>
     </aside>
