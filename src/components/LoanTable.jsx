@@ -15,7 +15,7 @@ export default function LoanTable({
   }
   return (
     <div className="p-2 overflow-y-auto max-h-[500px] min-h-[300px]">
-      <table className="w-full border font-custom  ">
+      <table className="w-full border font-custom  shadow-md">
         <thead className="sticky -top-2.5 bg-gray-100 border-b-2 border-gray-300">
           <tr>
             <th className="p-3 text-sm font-semibold tracking-wide text-right w-10 ">

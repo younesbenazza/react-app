@@ -103,7 +103,7 @@ function App() {
   const Layout = () => {
     return (
       <div className="h-screen">
-        <div className="flex flex-row min-h-full w-screen">
+        <div className="flex flex-row min-h-full w-screen overflow-auto ">
           <div className="border-x border-s-neutral-300">
             <Sidebar />
           </div>
@@ -111,7 +111,7 @@ function App() {
             <div className="bg-neutral-50 h-16 sticky">
               <Header />
             </div>
-            <div className="bg-neutral-50 flex-grow">
+            <div className="bg-neutral-50 flex-grow z-50">
               <Outlet />
             </div>
             <div className="bg-neutral-50">
@@ -181,7 +181,14 @@ function App() {
         },
         {
           path: "statistics",
-          element: <Statistics />,
+          element: (
+            <Statistics
+              loans={loans}
+              archives={archives}
+              members={members}
+              books={books}
+            />
+          ),
         },
         {
           path: "loan",

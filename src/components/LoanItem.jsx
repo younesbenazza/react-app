@@ -11,7 +11,7 @@ export default function LoanItem({
   table,
 }) {
   const [openpopup, setOpenpopup] = useState(false);
-  const [returned, setReturned] = useState(loan.rent_statu);
+  const [returned, setReturned] = useState(loan.isReturned);
 
   function toggleShow() {
     setOpenpopup(!openpopup);
@@ -82,19 +82,7 @@ export default function LoanItem({
       </td>
       <td className="p-3 text-sm text-center ">
         {returned && (
-          <button
-            onClick={() => {
-              /*
-              editLoan(loan.id, {
-                ...loan,
-
-                rent_statu: false,
-              });
-              editBook(book.id, { ...book, statu: "rented" });
-            */
-            }}
-            className="w-28 border rounded-lg p-2 bg-green-500 text-white  cursor-default"
-          >
+          <button className="w-28 border rounded-lg p-2 bg-green-500 text-white  cursor-default">
             تم إرجاعه
           </button>
         )}{" "}
@@ -104,7 +92,7 @@ export default function LoanItem({
               editLoan(loan.id, {
                 ...loan,
 
-                rent_statu: true,
+                isReturned: true,
               });
               editBook(book.id, { ...book, statu: "available" });
             }}

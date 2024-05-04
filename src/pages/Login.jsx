@@ -58,11 +58,13 @@ function Login({ setIsLogged }) {
                 setUsername(e.target.value);
               }}
               className=" w-80 border h-12 rounded p-2 m-4 py-1 focus:outline-none focus:border-blue-700 placeholder:text-right transition-colors "
+              required
             />
             <input
               type="password"
               placeholder="كلمة السر"
               value={password}
+              required
               onChange={(e) => {
                 setPassword(e.target.value);
               }}

@@ -87,7 +87,7 @@ export default function Members({
             placeholder="البحث عن التلاميذ"
             value={search}
             onChange={(data) => setSearch(data.target.value)}
-            className="bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
+            className="bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center shadow-md"
           />
 
           <AddMember

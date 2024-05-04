@@ -68,7 +68,7 @@ export default function AddLoan({
                   student_id: studentId,
                   rent_date: moment(rentdate).format("YYYY-MM-DD"),
                   return_date: moment(returndate).format("YYYY-MM-DD"),
-                  rent_statu: false,
+                  isReturned: false,
                 };
                 addLoan(newLoan);
                 editBook(bookId, {

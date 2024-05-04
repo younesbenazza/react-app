@@ -96,7 +96,7 @@ export default function Loan({
         </div>
       )}
 
-      <div className="flex items-center place-content-between">
+      <div className="flex items-center place-content-between ">
         <h1 className="text-right font-semibold text-lg p-4 mx-6 ">
           قائمة الإعارات النشطة
         </h1>
@@ -105,7 +105,7 @@ export default function Loan({
           placeholder="البحث في الإعارات النشطة"
           value={search}
           onChange={(data) => setSearch(data.target.value)}
-          className="bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
+          className="bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center shadow-md"
         />
 
         <AddLoan
@@ -119,7 +119,7 @@ export default function Loan({
       </div>
       <LoanTable
         loans={loans.filter((loan) => {
-          return loan ? loan.rent_statu === false : null;
+          return loan ? loan.isReturned === false : null;
         })}
         search={search}
         toggleShow={toggleShow}
@@ -142,12 +142,12 @@ export default function Loan({
           placeholder="البحث في الإعارات المنجزة"
           value={search2}
           onChange={(data) => setSearch2(data.target.value)}
-          className="bg-neutral-0 w-80 border py-2 px-4 mx-10 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
+          className="bg-neutral-0 w-80 border py-2 px-4 mx-10 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center shadow-md"
         />
       </div>
       <LoanTable
         loans={loans.filter((loan) => {
-          return loan ? loan.rent_statu === true : null;
+          return loan ? loan.isReturned === true : null;
         })}
         search={search2}
         toggleShow={toggleShow}

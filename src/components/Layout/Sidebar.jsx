@@ -2,8 +2,8 @@ import SidebarItem from "./SidebarItem";
 
 function Sidebar() {
   return (
-    <aside className="lg:w-56 p-4 bg-neutral-50 min-h-full">
-      <nav className="font-custom ">
+    <aside className="w-20 lg:w-56 p-4 bg-slate-50 min-h-full  ">
+      <nav className="font-custom fixed w-14 lg:w-48">
         <div className="hidden lg:block">
           <div className="flex items-center place-content-center gap-3 hover:cursor-pointer pd-3 m-4 ">
             <img
@@ -14,7 +14,10 @@ function Sidebar() {
             <span className=" font-medium hover:text-md  ">مكتبتي</span>
           </div>
         </div>
-        <ul className="text-center">
+        <ul
+          className="text-center "
+          style={{ maxHeight: "calc(100vh - 80px)", overflowY: "auto" }}
+        >
           <li className="my-3 text-slate-600 text-xs lg:text-base ">
             الصفحة الرئيسية
           </li>

@@ -20,7 +20,7 @@ function Main({ bookLength, memberLength, loanLength }) {
             type={["كتب", "كتاب"]}
           />
           <Card
-            title={"عدد التلاميذ المسجلين"}
+            title={"عدد التلاميذ"}
             number={memberLength}
             icon={"../../icons/person.png"}
             type={["تلاميذ", "تلميذ"]}
@@ -32,9 +32,6 @@ function Main({ bookLength, memberLength, loanLength }) {
             type={["إعارات", "إعارة"]}
           />
         </div>
-      </div>
-      <div className="mx-2">
-        <AccountDetails />
       </div>
     </div>
   );
