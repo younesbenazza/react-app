@@ -7,7 +7,7 @@ export default function Card({ title, type, number, icon }) {
   }
   return (
     <div
-      className="font-custom text-sm border p-4 m-2 w-1/3 h-44 text-right flex flex-col bg-blue-500 text-white rounded-lg  hover:bg-blue-600 border-blue-500 "
+      className="font-custom text-sm border p-4 h-44 text-right flex flex-col bg-blue-500 text-white rounded-lg  hover:bg-blue-600 border-blue-500 "
       style={{ boxShadow: "0 2px 4px rgba(0,0,0,0.2) " }}
     >
       <div className="flex gap-3">

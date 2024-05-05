@@ -2,14 +2,32 @@ import React from "react";
 import PlanSummaryCard from "../components/StatsCard";
 
 const Statistics = ({ books, members, archives, loans }) => {
-  const rentedBooks = books.filter((book) => book.status === "rented").length;
+  const rentedBooks = books.filter((book) => book.statu === "rented").length;
+  const lostBooks = books.filter((book) => book.statu === "lost").length;
   const availableBooks = books.filter(
-    (book) => book.status === "available"
+    (book) => book.statu === "available"
   ).length;
-  const borrowedBooks = loans.filter((loan) => !loan.isReturned).length;
+  const returnedBooks = loans.filter((loan) => loan.isReturned).length;
   const totalCategories = Array.from(
     new Set(books.map((book) => book.category))
   ).length;
+  var daysLeft;
+  const DelayedLoans = loans.filter((loan) => {
+    daysLeft = Math.max(
+      Math.floor(
+        (new Date(loan.return_date) - new Date()) / (1000 * 60 * 60 * 24)
+      ),
+      0
+    );
+
+    return loan ? daysLeft === 0 && loan.isReturned === false : null;
+  }).length;
+  const ActiveLoans = loans.filter((loan) => {
+    return loan ? loan.isReturned === false : null;
+  }).length;
+  const borrowedStudents = loans
+    .map((loan) => loan.student_id)
+    .filter((value, index, self) => self.indexOf(value) === index).length;
 
   return (
     <>
@@ -17,74 +35,67 @@ const Statistics = ({ books, members, archives, loans }) => {
         <PlanSummaryCard
           title="عدد الكتب"
           title2="الكتب المتاحة"
-          usedValue={54}
-          maxValue={100}
-          icon={"../icons/books.png"}
-          color={"text-indigo-500"}
+          usedValue={availableBooks}
+          maxValue={books.length}
+          icon="../icons/stats/books.png"
+          color="text-green-500"
         />
         <PlanSummaryCard
           title="عدد الكتب"
           title2="الكتب المستعارة"
-          usedValue={54}
-          maxValue={100}
-          icon={"../icons/books.png"}
-          color={"text-indigo-500"}
+          usedValue={rentedBooks}
+          maxValue={books.length}
+          icon="../icons/stats/Borrowed.png"
+          color="text-purple-500"
         />
         <PlanSummaryCard
           title="عدد الكتب"
           title2="الكتب الضائعة"
-          usedValue={21}
-          maxValue={50}
-          icon={"../icons/loan.png"}
-          color={"text-red-400"}
+          usedValue={lostBooks}
+          maxValue={books.length}
+          icon="../icons/stats/Lost.png"
+          color="text-red-500"
+        />
+
+        <PlanSummaryCard
+          title="عدد التلاميذ"
+          title2="بطاقات المكتبة"
+          usedValue={"NOT YET!!!!"}
+          maxValue={members.length}
+          icon="../icons/stats/cards.png"
+          color="text-indigo-500"
         />
         <PlanSummaryCard
-          title="عدد الكتب"
-          title2="الكتب المستعارة"
-          usedValue={54}
-          maxValue={100}
-          icon={"../icons/person.png"}
-          color={"text-indigo-500"}
+          title="عدد الإعارات"
+          title2="الإعارات المنجزة"
+          usedValue={returnedBooks}
+          maxValue={loans.length}
+          icon="../icons/stats/Done.png"
+          color="text-green-500"
         />
         <PlanSummaryCard
-          title="عدد الكتب"
-          title2="الكتب الضائعة"
-          usedValue={21}
-          maxValue={50}
-          icon={"../icons/card.png"}
-          color={"text-red-400"}
+          title="عدد الإعارات"
+          title2="الإعارات النشطة"
+          usedValue={ActiveLoans}
+          maxValue={loans.length}
+          icon="../icons/stats/Active.png"
+          color="text-purple-500"
         />
         <PlanSummaryCard
-          title="عدد الكتب"
-          title2="الكتب المستعارة"
-          usedValue={54}
-          maxValue={100}
-          icon={"../icons/books.png"}
-          color={"text-indigo-500"}
+          title="عدد الإعارات"
+          title2="الإعارات المتأخرة"
+          usedValue={DelayedLoans}
+          maxValue={loans.length}
+          icon="../icons/stats/Delayed.png"
+          color="text-red-500"
         />
         <PlanSummaryCard
-          title="عدد الكتب"
-          title2="الكتب الضائعة"
-          usedValue={21}
-          maxValue={50}
-          icon={"../icons/loan.png"}
-          color={"text-red-400"}
-        />
-        <PlanSummaryCard
-          title="عدد الكتب"
-          title2="الكتب المستعارة"
-          usedValue={54}
-          maxValue={100}
-          icon={"../icons/person.png"}
-          color={"text-indigo-500"}
-        />
-        <PlanSummaryCard
-          title="عدد الكتب"
-          title2="الكتب الضائعة"
-          usedValue={21}
-          maxValue={50}
-          icon={"../icons/card.png"}
-          color={"text-red-400"}
+          title="عدد التلاميذ"
+          title2="التلاميذ المستعيرين"
+          usedValue={borrowedStudents}
+          maxValue={members.length}
+          icon="../icons/stats/studentWloan.png"
+          color="text-indigo-500"
         />
       </div>
     </>

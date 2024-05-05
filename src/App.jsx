@@ -150,6 +150,7 @@ function App() {
               bookLength={books.length}
               memberLength={members.length}
               loanLength={loans.length}
+              archiveLength={archives.length}
             />
           ),
         },
