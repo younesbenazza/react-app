@@ -27,17 +27,18 @@ function App() {
   const [archives, setArchives] = useState([]);
   const [books, setBooks] = useState([]);
   const [loans, setLoans] = useState([]);
+  const [libraryCards, setLibraryCards] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   const [succeed, setSucceed] = useState(false);
   const [failed, setFailed] = useState(false);
 
   function AlertSucceed() {
     setSucceed(true);
-    setTimeout(() => setSucceed(false), 1500);
+    setTimeout(() => setSucceed(false), 500);
   }
   function AlertFailed() {
     setFailed(true);
-    setTimeout(() => setFailed(false), 1500);
+    setTimeout(() => setFailed(false), 500);
   }
   useEffect(() => {
     if (isLogged) {
@@ -60,6 +61,12 @@ function App() {
   useEffect(() => {
     if (isLogged) {
       getLoans();
+    }
+  }, [isLogged]);
+
+  useEffect(() => {
+    if (isLogged) {
+      getLibraryCards();
     }
   }, [isLogged]);
 
@@ -97,6 +104,17 @@ function App() {
       .then((res) => res.data)
       .then((data) => {
         setLoans(data.Rented);
+      })
+      .catch((err) => alert(err));
+  };
+
+  const getLibraryCards = () => {
+    api
+      .get("/librarycards/")
+      .then((res) => res.data)
+      .then((data) => {
+        setLibraryCards(data.LibraryCards);
+        console.log(data);
       })
       .catch((err) => alert(err));
   };
@@ -188,6 +206,7 @@ function App() {
               archives={archives}
               members={members}
               books={books}
+              cards={libraryCards}
             />
           ),
         },
@@ -204,12 +223,23 @@ function App() {
               members={members}
               books={books}
               setBooks={setBooks}
+              cards={libraryCards}
             />
           ),
         },
         {
           path: "librarycard",
-          element: <LibraryCard />,
+          element: (
+            <LibraryCard
+              libraryCards={libraryCards}
+              setLibraryCards={setLibraryCards}
+              members={members}
+              AlertSucceed={AlertSucceed}
+              AlertFailed={AlertFailed}
+              succeed={succeed}
+              failed={failed}
+            />
+          ),
         },
         {
           path: "members",

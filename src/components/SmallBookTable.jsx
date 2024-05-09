@@ -21,9 +21,9 @@ export default function SmallBookTable({
           className="mx-6 bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
         />{" "}
       </div>
-      <div className="p-2 overflow-y-auto max-h-[500px] min-h-[400px]">
+      <div className="m-2 overflow-y-auto max-h-[500px] min-h-[400px] shadow-md">
         <table className="w-full border font-custom  ">
-          <thead className="sticky -top-2.5 bg-gray-100 border-b-2 border-gray-300">
+          <thead className="sticky -top-0.5 bg-gray-100 border-b-2 border-gray-300">
             <tr>
               <th className="p-3 text-sm  font-semibold tracking-wide text-right w-24 ">
                 المعرف

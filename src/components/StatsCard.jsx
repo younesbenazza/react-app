@@ -12,10 +12,8 @@ export default function PlanSummaryCard({
   const offset = circumference - (percentage / 100) * circumference;
   return (
     <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white m-2 p-4 flex flex-col justify-center items-center">
-      {/* Circular progress bar */}
       <div className="relative w-full h-full">
         <svg className="w-full h-full" viewBox="0 0 100 100">
-          {/* Background circle */}
           <circle
             className="text-gray-200 stroke-current"
             strokeWidth="10"
@@ -24,7 +22,7 @@ export default function PlanSummaryCard({
             r="40"
             fill="transparent"
           />
-          {/* Progress circle */}
+
           <circle
             className={`${color} stroke-current`}
             strokeWidth="10"

@@ -1,7 +1,7 @@
 import React from "react";
 import PlanSummaryCard from "../components/StatsCard";
 
-const Statistics = ({ books, members, archives, loans }) => {
+const Statistics = ({ books, members, archives, loans, cards }) => {
   const rentedBooks = books.filter((book) => book.statu === "rented").length;
   const lostBooks = books.filter((book) => book.statu === "lost").length;
   const availableBooks = books.filter(
@@ -60,7 +60,7 @@ const Statistics = ({ books, members, archives, loans }) => {
         <PlanSummaryCard
           title="عدد التلاميذ"
           title2="بطاقات المكتبة"
-          usedValue={"NOT YET!!!!"}
+          usedValue={cards.length}
           maxValue={members.length}
           icon="../icons/stats/cards.png"
           color="text-indigo-500"

@@ -10,19 +10,19 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
   const [firstname, setFirstname] = useState("");
   const [birthdate, setBirthdate] = useState(null);
   const [birthplace, setBirthplace] = useState("");
-  const [classname, setClassname] = useState("");
+  const [classnum, setClassnum] = useState("");
 
   function clearinputs() {
     setLastname("");
     setFirstname("");
     setBirthplace("");
     setBirthdate("");
-    setClassname("");
+    setClassnum("");
   }
   return (
     <div className="">
       <button
-        className="bg-blue-300 hover:bg-blue-400 py-2 px-4 rounded-lg font-custom mx-6"
+        className="bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-lg font-custom mx-6 text-white shadow-md"
         onClick={toggleShow}
       >
         إضافة تلميذ
@@ -40,7 +40,7 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
                 last_name: lastname,
                 birth_date: moment(birthdate).format("YYYY-MM-DD"),
                 birth_place: birthplace,
-                class_name: classname,
+                class_num: classnum,
               };
               addMember(newMember);
               toggleShow();
@@ -129,8 +129,8 @@ export default function AddMember({ addMember, toggleShow, openmember }) {
                   autoComplete="off"
                   placeholder=" "
                   required
-                  value={classname}
-                  onChange={(data) => setClassname(data.target.value)}
+                  value={classnum}
+                  onChange={(data) => setClassnum(data.target.value)}
                 />
                 <label
                   htmlFor="classname"

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import api from "../api";
 import LoanTable from "../components/LoanTable";
 import AddLoan from "../components/AddLoan";
@@ -13,6 +13,7 @@ export default function Loan({
   books,
   members,
   setBooks,
+  cards,
 }) {
   const [openpopup, setOpenpopup] = useState(false);
 
@@ -112,7 +113,10 @@ export default function Loan({
           books={books}
           toggleShow={toggleShow}
           openloan={openpopup}
-          members={members}
+          members={members.filter((member) => {
+            const hasCard = cards.some((card) => card.student_id === member.id);
+            return hasCard;
+          })}
           addLoan={addLoan}
           editBook={editBook}
         />

@@ -18,3 +18,14 @@ input:not(:placeholder-shown) ~ .custom-input {
 *::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+@media screen {
+  .printable {
+    display: none;
+  }
+}
+
+@media print {
+  .printable {
+    display: block;
+  }
+}

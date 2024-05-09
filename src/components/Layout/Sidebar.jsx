@@ -5,7 +5,7 @@ function Sidebar() {
     <aside className="w-20 lg:w-56 p-4 bg-slate-50 min-h-full  ">
       <nav className="font-custom fixed w-14 lg:w-48">
         <div className="hidden lg:block">
-          <div className="flex items-center place-content-center gap-3 hover:cursor-pointer pd-3 m-4 ">
+          <div className="flex items-center place-content-center gap-3 cursor-default pd-3 m-4 ">
             <img
               className="w-10 h-10"
               src="../../../icons/library.png"
@@ -67,7 +67,7 @@ function Sidebar() {
           </li>
           <SidebarItem
             title={"عن التطبيق"}
-            icon={"../../../icons/archive.png"}
+            icon={"../../../icons/aboutus.png"}
             url={"/aboutus"}
           />
         </ul>

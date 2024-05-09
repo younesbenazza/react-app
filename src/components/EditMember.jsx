@@ -35,7 +35,7 @@ export default function EditMember({
                 last_name: lastname,
                 birth_date: birthdate,
                 birth_place: birthplace,
-                class_name: classname,
+                class_num: classname,
               };
               editMember(member.id, updatedMember);
               toggleShow();

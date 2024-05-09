@@ -46,7 +46,7 @@ function Login({ setIsLogged }) {
             <span className=" font-medium text-lg  ">مكتبتي</span>
           </div>
           <form
-            className="border flex flex-col px-10 py-4 rounded bg-white"
+            className="border flex flex-col px-10 py-4 rounded bg-white shadow-md"
             onSubmit={handleSubmit}
           >
             <h1 className="text-center m-3">يرجى تسجيل الدخول</h1>
@@ -79,6 +79,8 @@ function Login({ setIsLogged }) {
               </button>
             </div>
           </form>
+          <br />
+          <p className="p-2">جميع الحقوق محفوظة &copy; 2024</p>
         </div>
       </div>
     </>

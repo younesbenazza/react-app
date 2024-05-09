@@ -1,16 +1,35 @@
-import { useState } from "react";
-export default function SmallMemberTable({
+import { useState, useEffect } from "react";
+export default function SmallMembersTable({
   members,
-
-  setStudentId,
+  students,
+  setStudents,
   setStep,
 }) {
   const [search, setSearch] = useState("");
+
+  const [selectAll, setSelectAll] = useState(false);
+
+  useEffect(() => {
+    if (selectAll) {
+      setStudents(members);
+    } else {
+      setStudents([]);
+    }
+  }, [selectAll]);
+
+  const handleCheck = (student, isChecked) => {
+    if (isChecked) {
+      setStudents([...students, student]);
+    } else {
+      setStudents(students.filter((s) => s.id !== student.id));
+    }
+  };
+
   return (
     <div className="">
       <div className="flex items-center place-content-between">
         <div className="text-right p-2 font-custom">
-          يرجى إختيار تلميذ من القائمة
+          يرجى إختيار التلاميذ من القائمة
         </div>
         <input
           type="text"
@@ -20,10 +39,18 @@ export default function SmallMemberTable({
           className="mx-6 bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
         />{" "}
       </div>
-      <div className="m-2 overflow-y-auto max-h-[500px] min-h-[400px] shadow-md ">
+      <div className="m-2 overflow-y-auto max-h-[500px] min-h-[400px] shadow-md">
         <table className="w-full border font-custom  ">
           <thead className="sticky -top-0.5 bg-gray-100 border-b-2 border-gray-300">
             <tr>
+              <th className="p-3 text-sm font-semibold tracking-wide text-center w-24 ">
+                <input
+                  type="checkbox"
+                  checked={selectAll}
+                  onChange={(e) => setSelectAll(e.target.checked)}
+                  className="h-4 w-4 hover:cursor-pointer "
+                />
+              </th>
               <th className="p-3 text-sm font-semibold tracking-wide text-right w-24 ">
                 المعرف
               </th>
@@ -61,12 +88,19 @@ export default function SmallMemberTable({
                   return (
                     <tr
                       key={index}
-                      onClick={() => {
-                        setStudentId(member.id);
-                        setStep("2");
-                      }}
-                      className="bg-white border font-custom hover:bg-neutral-50 hover:cursor-pointer"
+                      className="bg-white border font-custom hover:bg-neutral-50 "
                     >
+                      <td className="p-3 text-sm text-center text-gray-700 ">
+                        <input
+                          key={member.id}
+                          type="checkbox"
+                          checked={students.some((s) => s.id === member.id)}
+                          onChange={(e) =>
+                            handleCheck(member, e.target.checked)
+                          }
+                          className="h-4 w-4 hover:cursor-pointer"
+                        />
+                      </td>
                       <td className="p-3 text-sm text-center text-gray-700 ">
                         {member.id}{" "}
                       </td>
@@ -90,13 +124,27 @@ export default function SmallMemberTable({
                 })
             ) : (
               <tr>
-                <td colSpan={6} className="text-center p-2">
+                <td colSpan={7} className="text-center p-2">
                   لا يوجد بيانات
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+      <div className="flex justify-end my-2 ">
+        <button
+          onClick={() => {
+            if (students.length === 0) {
+              alert("يرجى إختيار تلميذ واحد على الأقل");
+            } else {
+              setStep("2");
+            }
+          }}
+          className=" bg-blue-500 hover:bg-blue-600 py-2 px-5 rounded-lg font-custom text-white "
+        >
+          التالي
+        </button>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ export default function AddBook({ addBook, toggleShow, openbook }) {
   return (
     <div className="">
       <button
-        className="bg-blue-300 hover:bg-blue-400 py-2 px-4 rounded-lg font-custom mx-6"
+        className="bg-blue-500 hover:bg-blue-600 py-2 px-4 rounded-lg font-custom mx-6 text-white shadow-md"
         onClick={toggleShow}
       >
         إضافة كتاب

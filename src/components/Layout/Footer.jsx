@@ -1,7 +1,6 @@
 function Footer() {
   return (
-    <div className="font-custom flex place-content-between">
-      <p className="p-2 ">ثانوية الشهيد</p>
+    <div className="font-custom flex justify-end">
       <p className="p-2 ">جميع الحقوق محفوظة &copy; 2024</p>
     </div>
   );
