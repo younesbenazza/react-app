@@ -188,7 +188,7 @@ export default function EditBook({ toggleShow, openbook, book, editBook }) {
                     onChange={(e) =>
                       setStatus(e.target.checked ? "lost" : "available")
                     }
-                    className=""
+                    className="h-4 w-4 hover:cursor-pointer"
                   />
                   <label className="mx-2" htmlFor={"lost" + book.id}>
                     ضائع

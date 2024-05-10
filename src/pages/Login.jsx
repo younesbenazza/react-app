@@ -77,6 +77,15 @@ function Login({ setIsLogged }) {
               >
                 {loading ? <LoadingIndicator /> : "تسجيل الدخول"}
               </button>
+              <div className="my-2">
+                ليس لديك حساب؟{" "}
+                <a
+                  href="/register"
+                  className="text-blue-600 hover:text-blue-900 "
+                >
+                  سجل الأن
+                </a>
+              </div>
             </div>
           </form>
           <br />

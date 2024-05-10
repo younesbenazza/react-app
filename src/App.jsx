@@ -148,7 +148,7 @@ function App() {
 
   function RegisterAndLogout() {
     localStorage.clear();
-    return <Register />;
+    return <Register setIsLogged={setIsLogged} />;
   }
 
   const router = createBrowserRouter([
