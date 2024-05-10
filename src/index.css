@@ -27,5 +27,8 @@ input:not(:placeholder-shown) ~ .custom-input {
 @media print {
   .printable {
     display: block;
+    display: grid;
+    font-family: Arial, sans-serif;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
