@@ -15,7 +15,7 @@ export default function EditMember({
   const [firstname, setFirstname] = useState(member.first_name);
   const [birthdate, setBirthdate] = useState(member.birth_date);
   const [birthplace, setBirthplace] = useState(member.birth_place);
-  const [classname, setClassname] = useState(member.class_name);
+  const [classname, setClassname] = useState(member.class_num);
 
   return (
     <div className="">
