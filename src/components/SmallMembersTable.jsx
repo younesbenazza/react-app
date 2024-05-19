@@ -39,98 +39,100 @@ export default function SmallMembersTable({
           className="mx-6 bg-neutral-0 w-80 border py-2 px-4 focus:outline-none focus:border-blue-600 focusborder-b-2 transition-colors rtl-cursor rounded text-center"
         />{" "}
       </div>
-      <div className="m-2 overflow-y-auto max-h-[500px] min-h-[400px] shadow-md">
-        <table className="w-full border font-custom  ">
-          <thead className="sticky -top-0.5 bg-gray-100 border-b-2 border-gray-300">
-            <tr>
-              <th className="p-3 text-sm font-semibold tracking-wide text-center w-24 ">
-                <input
-                  type="checkbox"
-                  checked={selectAll}
-                  onChange={(e) => setSelectAll(e.target.checked)}
-                  className="h-4 w-4 hover:cursor-pointer "
-                />
-              </th>
-              <th className="p-3 text-sm font-semibold tracking-wide text-right w-24 ">
-                المعرف
-              </th>
-              <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right">
-                اللقب
-              </th>
-              <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right">
-                الإسم
-              </th>
-              <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right">
-                تاريخ الإزدياد
-              </th>
-              <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right ">
-                مكان الإزدياد
-              </th>
-              <th className="p-3 text-sm w-32 font-semibold tracking-wide text-right ">
-                القسم
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {members.length > 0 ? (
-              members
-                .filter((member) =>
-                  member
-                    ? member.first_name
-                        .toLowerCase()
-                        .includes(search.toLowerCase()) ||
-                      member.last_name
-                        .toLowerCase()
-                        .includes(search.toLowerCase())
-                    : null
-                )
-                .map((member, index) => {
-                  return (
-                    <tr
-                      key={index}
-                      className="bg-white border font-custom hover:bg-neutral-50 "
-                    >
-                      <td className="p-3 text-sm text-center text-gray-700 ">
-                        <input
-                          key={member.id}
-                          type="checkbox"
-                          checked={students.some((s) => s.id === member.id)}
-                          onChange={(e) =>
-                            handleCheck(member, e.target.checked)
-                          }
-                          className="h-4 w-4 hover:cursor-pointer"
-                        />
-                      </td>
-                      <td className="p-3 text-sm text-center text-gray-700 ">
-                        {member.id}{" "}
-                      </td>
-                      <td className="p-3 text-sm text-right text-gray-700">
-                        {member.last_name}
-                      </td>
-                      <td className="p-3 text-sm text-right text-gray-700">
-                        {member.first_name}
-                      </td>
-                      <td className="p-3 text-sm text-right text-gray-700 ">
-                        {member.birth_date}
-                      </td>
-                      <td className="p-3 text-sm text-right text-gray-700">
-                        {member.birth_place}
-                      </td>
-                      <td className="p-3 text-sm text-right text-gray-700">
-                        {member.class_num}
-                      </td>
-                    </tr>
-                  );
-                })
-            ) : (
+      <div className="min-h-[400px]">
+        <div className="m-2 overflow-y-auto max-h-[500px] shadow-md">
+          <table className="w-full border font-custom  ">
+            <thead className="sticky -top-0.5 bg-gray-100 border-b-2 border-gray-300">
               <tr>
-                <td colSpan={7} className="text-center p-2">
-                  لا يوجد بيانات
-                </td>
+                <th className="p-3 text-sm font-semibold tracking-wide text-center w-24 ">
+                  <input
+                    type="checkbox"
+                    checked={selectAll}
+                    onChange={(e) => setSelectAll(e.target.checked)}
+                    className="h-4 w-4 hover:cursor-pointer "
+                  />
+                </th>
+                <th className="p-3 text-sm font-semibold tracking-wide text-right w-24 ">
+                  المعرف
+                </th>
+                <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right">
+                  اللقب
+                </th>
+                <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right">
+                  الإسم
+                </th>
+                <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right">
+                  تاريخ الإزدياد
+                </th>
+                <th className="p-3 text-sm w-44 font-semibold tracking-wide text-right ">
+                  مكان الإزدياد
+                </th>
+                <th className="p-3 text-sm w-32 font-semibold tracking-wide text-right ">
+                  القسم
+                </th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {members.length > 0 ? (
+                members
+                  .filter((member) =>
+                    member
+                      ? member.first_name
+                          .toLowerCase()
+                          .includes(search.toLowerCase()) ||
+                        member.last_name
+                          .toLowerCase()
+                          .includes(search.toLowerCase())
+                      : null
+                  )
+                  .map((member, index) => {
+                    return (
+                      <tr
+                        key={index}
+                        className="bg-white border font-custom hover:bg-neutral-50 "
+                      >
+                        <td className="p-3 text-sm text-center text-gray-700 ">
+                          <input
+                            key={member.id}
+                            type="checkbox"
+                            checked={students.some((s) => s.id === member.id)}
+                            onChange={(e) =>
+                              handleCheck(member, e.target.checked)
+                            }
+                            className="h-4 w-4 hover:cursor-pointer"
+                          />
+                        </td>
+                        <td className="p-3 text-sm text-center text-gray-700 ">
+                          {member.id}{" "}
+                        </td>
+                        <td className="p-3 text-sm text-right text-gray-700">
+                          {member.last_name}
+                        </td>
+                        <td className="p-3 text-sm text-right text-gray-700">
+                          {member.first_name}
+                        </td>
+                        <td className="p-3 text-sm text-right text-gray-700 ">
+                          {member.birth_date}
+                        </td>
+                        <td className="p-3 text-sm text-right text-gray-700">
+                          {member.birth_place}
+                        </td>
+                        <td className="p-3 text-sm text-right text-gray-700">
+                          {member.class_num}
+                        </td>
+                      </tr>
+                    );
+                  })
+              ) : (
+                <tr>
+                  <td colSpan={7} className="text-center p-2">
+                    لا يوجد بيانات
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div className="flex justify-end my-2 ">
         <button
