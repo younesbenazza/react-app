@@ -155,9 +155,9 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedRoute setIsLogged={setIsLogged}>
-          <Layout />
-        </ProtectedRoute>
+        /*  <ProtectedRoute setIsLogged={setIsLogged}>*/
+        <Layout />
+        /*  </ProtectedRoute>*/
       ),
       errorElement: <ErrorPage />,
       children: [
