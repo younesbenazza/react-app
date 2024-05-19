@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import LoadingIndicator from "../components/LoadingIndicator";
 function Login({ setIsLogged }) {
@@ -79,12 +79,12 @@ function Login({ setIsLogged }) {
               </button>
               <div className="my-2">
                 ليس لديك حساب؟{" "}
-                <a
-                  href="/register"
+                <Link
+                  to="/register"
                   className="text-blue-600 hover:text-blue-900 "
                 >
                   سجل الأن
-                </a>
+                </Link>
               </div>
             </div>
           </form>
